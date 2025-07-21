@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetWebShop - Pet Shop - Prvi izbor Vašeg ljubimca</title>
+    <!-- Meta Tags -->
+    <meta name="author" content="Stevan Gavrilovic" />
+    <meta name="revisit-after" content="1 days" />
+    <meta http-equiv="refresh" content="600" />
+    <!-- Meta Tags -->
+    <link
+      rel="preload"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link rel="stylesheet" href="home-page.css" />
+
+    <script defer type="module" src="home-page.js"></script>
+
+    <link rel="icon" href="img/home-page/favicon.svg" type="image/png" />
+  </head>
+  <body>
+    <header>
+      <div class="main-header-container">
+        <!-- prettier-ignore -->
+        <div class="header-promotions">
+          <a href=""><img src="img/home-page/besplatna dostava.webp" alt="besplatna dostava" class="promotion-img" loading="lazy"></a>
+          <a href=""><img src="img/home-page/POŠALJITE POKLON.webp" alt="POŠALJITE_POKLON" class="promotion-img" loading="lazy"></a>
+          <a href=""><img src="img/home-page/AKCIJE I POPUSTI2.webp" alt="AKCIJE I POPUSTI2" class="promotion-img" loading="lazy"></a>
+          <a href=""><img src="img/home-page/AUKCIJSKA PRODAJA.webp" alt="AUKCIJSKA PRODAJA" class="promotion-img" loading="lazy"></a>
+        </div>
+        <div>
+          <img src="img/home-page/logo.png" alt="Logo" loading="lazy" />
+          <div class="input-box">
+            <form action="">
+              <input
+                class="search-input"
+                type="text"
+                placeholder="Unesite trazeni proizvod"
+              />
+              <button class="searh-submit" type="submit">
+                <i class="fal fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <div class="cart-box">
+            <div>
+              <i class="fal fa-shopping-cart"></i>
+              <p class="cart-text">Korpa</p>
+            </div>
+            <div>
+              <i class="fal fa-user"></i>
+              <p class="cart-text">Prijavi se</p>
+            </div>
+          </div>
+        </div>
+        <div class="header-text-container">
+          <h2>Petwebshop - Pet shop hrana i oprema za kućne ljubimce</h2>
+        </div>
+      </div>
+      <div class="fixed-nav">
+        <nav class="navigation">
+          <ul class="navigation-list">
+            <li class="navigation-main-link">
+              <i class="fal fa-bars"></i> <span>Kategorije</span>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <img src="img/home-page/psi-link.webp" loading="lazy" alt="Milisav" />
+                <span>Psi</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Hrana</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dehidrirana (suva) hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Vlažna hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Zamensko mleko</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Oprema</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Činije i posude</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Povoci, ogrlice i amovi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Odeća i aksesoari</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Igračke</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kreveti i ležaljke</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Pelene, kesice, dispanzeri za kesice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i transporteri</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Sredstva za dresuru</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Privesci i adresari</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kućice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Korpe za njušku i zaštitne kragne</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Kozmetika i higijena</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Nega dlake pasa</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Nega očiju i ušiju</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Vlažne maramice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Oralna higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Pribor za negu</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Higijena prostora</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Sredstva za dresuru</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Dodaci ishrani</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Zaštita od parazita</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Spot-onovi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Ogrlice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Sprejevi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Šamponi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Češljevi i pincete</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Start paket za stence</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Super premium</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Premium</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Classic</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <img src="img/home-page/macke-link.webp" loading="lazy" alt="Sofija" />
+                <span>Mačke</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Hrana</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dehidrirana (suva) hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Vlažna hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Oprema</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Činije i posude</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Povoci, ogrlice i amovi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Igračke</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kreveti i ležaljke</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Grebalice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i transporteri</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Mrežice, vrata, prva pomoć...</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Kozmetika i higijena</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Nega dlake mačaka</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Nega očiju i ušiju</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Vlažne maramice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Oralna higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Pribor za negu</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Higijena prostora</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Posipi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Toaleti i lopatice za posipe</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Sredstva za dresuru</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Dodaci ishrani</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Zaštita od parazita</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Spot-onovi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Ogrlice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Sprejevi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Šamponi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Češljevi i pincete</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Start paketi za mačiće</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Super premium</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Premium</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <img src="img/home-page/male-zivotinje-link.webp" loading="lazy" alt="Petko" />
+                <span>Male životinje</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Zec-patuljasti zec</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Morski prasići</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Hrčci-gerbili-miševi-pacovi</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Činčila-degu</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Feretke</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Veverice</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <img src="img/home-page/ptice-link.webp" loading="lazy" alt="Kica" />
+                <span>Ptice</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Mali papagaji</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana i poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Srednji papagaji</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana i poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Veliki papagaji</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana i poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Kanarinci</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana i poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Egzote</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana i poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Šumske ptice</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Hrana i poslastice</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Dodaci ishrani</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kozmetika i higijena</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Kavezi i oprema</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <img src="img/home-page/akvaristika-link.webp" loading="lazy" alt="Zaklina" />
+                <span>Akvaristika</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Hrana za ribice</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Oprema za akvaristiku</h3></a>
+                </ul>
+                </div>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <img src="img/home-page/teraristika-link.webp" loading="lazy" alt="Trta" />
+                <span>Teraristika</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Hrana za kornjače</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Dodaci ishrani za kornjače</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Terarijumi i oprema za kornjače</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Hrana za guštere</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Dodaci ishrani za guštere</h3></a>
+                </ul>
+                </div>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <img src="img/home-page/konji-link.webp" loading="lazy" alt="Dobrila" />
+                <span>Konji</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Hrana za konje</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Dodaci ishrani za konje</h3></a>
+                </ul>
+
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Kozmetika i higijena za konje</h3></a>
+                </ul>
+                </div>
+            </li>
+            <!-- prettier-ignore -->
+            <li class="navigation-main-link">
+                <a class="navigation-main-link-item" href="">
+                <i class="fal fa-user-circle"></i>
+                <span>Moj nalog</span>
+                </a>
+                <div class="navigation-container">
+                <ul>
+                    <a class="navigation-container-link" href=""><h3>Moj nalog</h3></a>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Lične informacije</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Unesite prvu adresu</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Prethodne narudžbine</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Reversi</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Vaučeri</a>
+                    </li>
+                    <li class="navigation-container-link">
+                    <a class="navigation-container-link-item" href="">Obaveštenja</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>

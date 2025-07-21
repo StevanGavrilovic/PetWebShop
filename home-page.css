@@ -1,0 +1,149 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+:root {
+  /* Colors and typography */
+  --primary-color: #b32025;
+  --secondary-color: #66af12;
+  --background-color: #f0f0f0d3;
+  --text-color: #000000;
+  --link-color: #ffffff;
+  --link-hover-color: var(--link-color); /* no change on hover */
+  --button-color: var(--secondary-color);
+  --button-hover-color: #aad165;
+  --heading-font-color: #000000;
+  --body-font-color: #000000;
+
+  /* Dimensions and layout */
+  --paragraph-font-size: 1rem;
+  --h1-font-size: var(--paragraph-font-size); /* same as paragraph */
+  --subheading-font-size: menu; /* follow menu size */
+  --section-spacing: menu; /* follow menu spacing */
+  --text-alignment: center;
+  --max-content-width: 1600px;
+  --image-dimensions: follow-site; /* follow site with 5 images */
+  --border-radius: slightly-rounded; /* slightly rounded corners */
+
+  /* Design elements */
+  --image-hover-effect: scale(1.05); /* slight zoom */
+  --button-style: solid; /* follow images */
+  --button-icon: none; /* no icons */
+  --icon-library: font-awesome;
+  --header-height: menu; /* follow menu */
+  --footer-columns: menu; /* follow menu with design changes */
+  --breakpoints: all; /* for all devices */
+  --card-effect: loop-effect;
+
+  /* Forms and cards */
+  --search-placeholder: yes;
+  --input-design: follow-images;
+  --card-padding: menu; /* follow menu */
+  --card-style: shadow; /* needs clarification */
+  --card-hover-effect: var(--button-hover-color);
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.fixed-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+}
+
+.navigation-list {
+  height: 100dvh;
+  width: 70px;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.navigation-list:hover {
+  width: 155px;
+}
+
+.navigation-main-link-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 10px;
+  width: 160px;
+  height: 65px;
+}
+
+.navigation-main-link {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  height: 80px;
+  transition: border 0.2s ease;
+}
+
+.navigation-main-link:hover {
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+}
+
+.navigation-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  opacity: 0;
+  width: 80dvw;
+  height: 100vh;
+  position: absolute;
+  padding: 80px 50px 500px 20px;
+  left: 155px;
+  top: 0;
+  grid-row-gap: 20px;
+  background: white;
+  z-index: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition:
+    opacity 0.25s ease-in-out,
+    visibility 0s linear 0.25s;
+  border-left: 1px solid transparent;
+  will-change: opacity, transform;
+}
+
+.navigation-main-link:hover .navigation-container {
+  opacity: 1;
+  z-index: 100;
+  visibility: visible;
+  transition: 0.2s ease;
+  border-left-color: grey;
+}
+
+.navigation-container ul {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.2s ease;
+  will-change: opacity, transform;
+}
+
+.navigation-main-link:hover .navigation-container ul {
+  opacity: 1;
+  transform: translateY(0);
+}
+.navigation-container-link > h3 {
+  margin-bottom: 10px;
+}
+.navigation-container-link {
+  margin-bottom: 5px;
+}
