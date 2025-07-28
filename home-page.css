@@ -364,7 +364,7 @@ body {
   top: 0;
   gap: 20px;
   background: white;
-  z-index: 4;
+  z-index: 20;
   visibility: hidden;
   overflow: hidden;
   transition:
@@ -523,22 +523,34 @@ body {
   margin-right: 0%;
 }
 
+.section-img-title {
+  font-size: var(--h2-font-size-l);
+  font-family: var(--font-family);
+  font-weight: 300;
+}
+
 .section-img-container {
   width: 100%;
   display: flex;
-  height: var(--section-height);
-
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   margin-bottom: var(--section-margin);
   position: relative;
   z-index: 3;
 }
 
+.section-main-img-left-container,
+.section-main-img-right-container {
+  text-align: center;
+}
+
 .dog-section-left,
 .dog-section-right {
   width: 100%;
-  max-width: 560px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+  max-width: 639px;
 }
 
 .dog-container-img {
@@ -583,6 +595,7 @@ body {
 
 .swiper-wrapper {
   align-items: center;
+  justify-content: center;
 }
 
 .swiper-slide {
@@ -644,3 +657,72 @@ body {
   padding: var(--section-button-padding);
   z-index: 1; /* Osigurava da tekst ostane iznad */
 }
+
+/* Section Slider */
+
+.section-slider {
+  width: 100%;
+}
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: var(--section-height);
+  margin: 0;
+  overflow: hidden;
+}
+.slide {
+  width: 100%;
+
+  position: absolute;
+  transition: 1s ease;
+}
+
+.slider .slide img {
+  height: fit-content;
+  max-height: 230px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.link-text-pic-section {
+  position: absolute;
+  top: 120px;
+  left: 15px;
+}
+
+.dots {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  bottom: 20px;
+}
+
+.dots__dot {
+  border: none;
+  opacity: 0.7;
+  height: 0.5rem;
+  width: 0.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: 2px solid var(--secondary-color);
+  border-radius: 50%;
+  /* Only necessary when overlying images */
+}
+
+.dots__dot:last-child {
+  margin: 0;
+}
+
+.dots__dot--active {
+  /* background-color: #fff; */
+
+  background-color: var(--blue-color);
+  opacity: 1;
+}
+
+/* Section slider */
