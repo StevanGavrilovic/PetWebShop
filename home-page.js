@@ -1,12 +1,18 @@
 document.querySelectorAll(".swiper").forEach((swiperEl) => {
   const slides = swiperEl.querySelectorAll(".swiper-slide").length;
+  const enableLoop = slides >= 6;
 
-  const enableLoop = slides > 5;
+  // Dodaj klasu ako ima manje od 4 slajda
+  const wrapper = swiperEl.querySelector(".swiper-wrapper");
+  if (slides < 4) {
+    wrapper.classList.add("centered-wrapper");
+  }
 
+  // Inicijalizuj Swiper
   new Swiper(swiperEl, {
     direction: "horizontal",
     loop: enableLoop,
-    spaceBetween: 10,
+    spaceBetween: 20,
 
     navigation: {
       nextEl: swiperEl.querySelector(".swiper-button-next"),
@@ -14,13 +20,15 @@ document.querySelectorAll(".swiper").forEach((swiperEl) => {
     },
 
     breakpoints: {
-      1920: { slidesPerView: 5 },
-      1024: { slidesPerView: 4 },
+      1920: { slidesPerView: 6, spaceBetween: 20 },
+      1440: { slidesPerView: 5, spaceBetween: 10 },
+      1024: { slidesPerView: 3 },
       768: { slidesPerView: 2 },
       480: { slidesPerView: 1 },
     },
   });
 });
+
 document.querySelectorAll(".slider").forEach((slider, index) => {
   // Pronađi sve elemente unutar trenutnog slidera
   const slides = slider.querySelectorAll(".slide");
@@ -40,7 +48,6 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
     });
   };
 
-  // Dodaj klon prvog slajda na kraj za beskonačni efekat
   const firstSlideClone = slides[0].cloneNode(true);
   firstSlideClone.classList.add("clone");
   slider.appendChild(firstSlideClone);
@@ -53,7 +60,6 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
       dot.classList.remove("dots__dot--active");
     });
 
-    // Normalizuj slide index za dots (klon treba da aktivira prvi dot)
     const dotIndex = slide >= maxSlide ? 0 : slide;
     const activeDot = dotContainer.querySelector(
       `.dots__dot[data-slide="${dotIndex}"]`
@@ -70,7 +76,7 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
       } else {
         slideEl.style.transition = "transform 1s ease-out";
       }
-      slideEl.style.transform = `translateX(${100 * (i - slide)}%)`;
+      slideEl.style.transform = `translateX(${120 * (i - slide)}%)`;
     });
   };
 
@@ -80,42 +86,21 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
     goToSlide(curSlide);
     activateDot(curSlide);
 
-    // Kad dođemo do klona (poslednji slide + 1), resetuj na prvi bez animacije
     if (curSlide === maxSlide) {
       setTimeout(() => {
         curSlide = 0;
-        goToSlide(curSlide, true); // bez tranzicije
-      }, 1000); // čekaj da se završi animacija (1s)
+        goToSlide(curSlide, true);
+      }, 1000);
     }
   };
 
   // Prev slide
-  const prevSlide = function () {
-    if (curSlide === 0) {
-      // Idi na klon bez animacije
-      curSlide = maxSlide;
-      goToSlide(curSlide, true);
-
-      // Zatim animiraj na poslednji pravi slide
-      setTimeout(() => {
-        curSlide = maxSlide - 1;
-        goToSlide(curSlide);
-        activateDot(curSlide);
-      }, 10);
-    } else {
-      curSlide--;
-      goToSlide(curSlide);
-      activateDot(curSlide);
-    }
-  };
 
   const init = function () {
     goToSlide(0);
     createDots();
     activateDot(0);
   };
-
-  // Event listeneri
 
   dotContainer.addEventListener("click", function (e) {
     if (e.target.classList.contains("dots__dot")) {
@@ -126,7 +111,6 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
     }
   });
 
-  // Auto play (opcionalno)
   let playSlider;
   const startAutoPlay = () => {
     playSlider = setInterval(nextSlide, 8000);
@@ -136,5 +120,138 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
   init();
 
   // Otkomentiraj za auto play
-  startAutoPlay();
+  // startAutoPlay();
+});
+
+let slidersImgContainer = document.querySelectorAll(".slider .slide");
+
+const slidersImgContainerCallback = (entries) => {
+  entries.forEach((entry, index) => {
+    let target = entry.target;
+    let sliderImgs = target.querySelectorAll(".section-img-dog");
+    if (target.classList.contains("clone"))
+      sliderImgs.forEach((img) => {
+        img.classList.add("show-slide-img");
+      });
+    if (entry.isIntersecting) {
+      sliderImgs.forEach((img, i) => {
+        setInterval(function () {
+          img.classList.add("show-slide-img");
+        }, 150 * i);
+      });
+    }
+  });
+};
+
+const optionsSlider = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.9,
+};
+
+const observerSlider = new IntersectionObserver(
+  slidersImgContainerCallback,
+  optionsSlider
+);
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    slidersImgContainer.forEach((slider) => {
+      observerSlider.observe(slider);
+    });
+  }, 500);
+  slidersImgContainer[1].style.opacity = "0";
+
+  setInterval(function () {
+    slidersImgContainer[1].style.opacity = "1";
+  }, 1100);
+});
+
+// Main function
+let headerMainContainer = document.querySelector(".main-header-container");
+let returnBtn = document.querySelector(".return-btn");
+let headerTextContainer = document.querySelector(".header-text-container");
+let searchBarElement = document.querySelector(".header-input");
+let lastScrollTop = window.scrollY;
+let scrollListenerAdded = false;
+let isFixed = false;
+let isClicked = false;
+
+// Kreiranje placeholder elementa da sprečimo "skok" sadržaja
+let placeholder = document.createElement("div");
+placeholder.style.display = "none";
+placeholder.classList.add("header-placeholder");
+
+let activeHeight = function () {
+  if (scrollListenerAdded) return;
+  scrollListenerAdded = true;
+
+  document.addEventListener("scroll", function () {
+    let currentScroll = window.scrollY;
+
+    if (isClicked) return;
+
+    if (currentScroll < lastScrollTop) {
+      searchBarElement.classList.add("active-heigth");
+    } else {
+      searchBarElement.classList.remove("active-heigth");
+    }
+    lastScrollTop = currentScroll;
+  });
+};
+
+const headerTextElementCallback = (entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting && !isFixed) {
+      // Dodaj placeholder pre nego što element postane fixed
+      const rect = searchBarElement.getBoundingClientRect();
+      placeholder.style.height = rect.height + "px";
+      placeholder.style.display = "block";
+      searchBarElement.parentNode.insertBefore(placeholder, searchBarElement);
+
+      // Dodaj fixed klasu sa malim delay-om za smooth prelazak
+      requestAnimationFrame(() => {
+        searchBarElement.classList.add("header-input-active");
+        isFixed = true;
+      });
+      returnBtn.classList.add("btn-show");
+
+      // Pokreni scroll listener
+      setTimeout(() => {
+        activeHeight();
+      }, 100);
+    } else if (entry.isIntersecting && isFixed) {
+      // Reset flag-a kada se vrati na vrh
+      isClicked = false;
+
+      // Ukloni fixed poziciju i placeholder
+      returnBtn.classList.remove("btn-show");
+      searchBarElement.classList.remove("header-input-active");
+      searchBarElement.classList.remove("active-heigth");
+      placeholder.style.display = "none";
+      if (placeholder.parentNode) {
+        placeholder.parentNode.removeChild(placeholder);
+      }
+      isFixed = false;
+    }
+  });
+};
+
+const options = {
+  root: null,
+  rootMargin: "50px",
+  threshold: 0,
+};
+
+const observer = new IntersectionObserver(headerTextElementCallback, options);
+observer.observe(headerTextContainer);
+
+returnBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  isClicked = true;
+
+  // Odmah ukloni active-heigth kada se klikne dugme
+
+  headerMainContainer.scrollIntoView({ behavior: "smooth" });
+  searchBarElement.classList.remove("active-heigth");
 });
