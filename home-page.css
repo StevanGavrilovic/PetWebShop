@@ -763,7 +763,6 @@ body {
 
 .swiper-wrapper {
   align-items: center;
-  width: fit-content !important;
 }
 
 .centered-wrapper {
@@ -1477,6 +1476,9 @@ footer .main {
     min-height: var(--product-picture-height-m);
   }
 
+  .swiper-wrapper {
+    width: fit-content !important;
+  }
   /* product-section */
 
   .section-title,
