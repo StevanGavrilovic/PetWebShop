@@ -35,10 +35,12 @@ li {
 
   /* Layout dimensions */
   --padding-width-fixed-nav: 70px;
+  --padding-width-fixed-nav-m: 55px;
   --header-padding-right-left: 50px;
   --header-padding-right-left-m: 30px;
   --height-promotions-text-header: 95px;
   --hover-width: 170px;
+  --hover-width-m: 140px;
   --section-margin: 25px;
   --max-content-width: 1600px;
   --border-radius: 20px;
@@ -72,6 +74,7 @@ li {
 
   --header-icons-font-size: 35px;
   --fixed-header-icons-font-size: 46px;
+  --fixed-header-icons-font-size-m: 35px;
   /* --font-family: "Roboto", sans-serif; */
   /* --font-family: "Montserrat", sans-serif; */
   --font-family: "Quicksand", sans-serif;
@@ -1308,6 +1311,11 @@ footer .main {
     overflow-y: hidden;
   }
 
+  .main-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   .main-container > div {
     padding: 10px var(--header-padding-right-left-m) 10px
       calc(var(--padding-width-fixed-nav) + var(--header-padding-right-left-m));
@@ -1361,13 +1369,60 @@ footer .main {
   .header-user-links {
     font-size: var(--p-font-size-s);
   }
+  .cart-text {
+    font-size: var(--p-font-size-s);
+  }
 
   /* Header end */
+
+  /* Fixed navigation  */
+  .navigation-list:hover {
+    width: var(--hover-width-m);
+  }
+
+  .navigation-container {
+    left: var(--hover-width-m);
+    grid-auto-rows: minmax(auto, 53%);
+  }
+  .navigation-container-link-item,
+  .navigation-main-link-item,
+  .bars {
+    gap: 10px;
+    padding-right: 5px;
+  }
+
+  .bars,
+  .navigation-main-link {
+    font-size: var(--p-font-size-m);
+    height: 70px;
+  }
+  .fa-bars,
+  .fa-user-circle {
+    font-size: var(--fixed-header-icons-font-size-m);
+  }
+  .navigation-main-link-item img {
+    width: 35px;
+    height: 50px;
+  }
+  .navigation-container-link {
+    font-size: var(--p-font-size-s);
+  }
+  .navigation-container-link img {
+    width: 60px;
+  }
+
+  .navigation-list {
+    width: var(--padding-width-fixed-nav-m);
+  }
+
+  /* Fixed navigation ends */
 
   /* Main */
   .main {
     padding: 10px var(--header-padding-right-left-m) 10px
-      calc(var(--padding-width-fixed-nav) + var(--header-padding-right-left-m));
+      calc(
+        var(--padding-width-fixed-nav-m) + var(--header-padding-right-left-m)
+      );
   }
 
   /* Main ends */
