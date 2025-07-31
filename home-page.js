@@ -12,7 +12,7 @@ document.querySelectorAll(".swiper").forEach((swiperEl) => {
   new Swiper(swiperEl, {
     direction: "horizontal",
     loop: enableLoop,
-    spaceBetween: 20,
+    spaceBetween: 15,
 
     navigation: {
       nextEl: swiperEl.querySelector(".swiper-button-next"),
@@ -22,8 +22,8 @@ document.querySelectorAll(".swiper").forEach((swiperEl) => {
     breakpoints: {
       1920: { slidesPerView: 6, spaceBetween: 20 },
       1440: { slidesPerView: 5, spaceBetween: 10 },
-      1024: { slidesPerView: 3 },
-      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 4 },
+      768: { slidesPerView: 3 },
       480: { slidesPerView: 1 },
     },
   });
