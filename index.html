@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PetWebShop - Pet Shop - Prvi izbor Vašeg ljubimca</title>
     <!-- Meta Tags -->
     <meta name="author" content="Stevan Gavrilovic" />
@@ -30,9 +30,9 @@
     <header>
       <i class="fal fa-arrow-up return-btn"></i>
 
-      <!-- prettier-ignore -->
       <div class="main-container">
-        <ul class="header-promotions">
+        <!-- prettier-ignore -->
+        <ul class="header-promotions mobile-deactive">
           <li><img src="img/home-page/besplatna dostava.webp" alt="besplatna dostava" class="promotion-img" loading="lazy">
             <div class="header-promotions-container"><p>BESPLATNA DOSTAVA <br> za sve porudžbine preko 6000 RSD. Do 20 kg težine pošiljke.</p></div>
         </li>
@@ -47,8 +47,14 @@
         </li>
         </ul>
         <div class="header-input">
-          <img class="logo-header-img" src="img/home-page/logo.png" alt="Logo" loading="lazy" />
+          <img
+            class="logo-header-img"
+            src="img/home-page/logo.png"
+            alt="Logo"
+            loading="lazy"
+          />
           <div class="input-box">
+            <!-- prettier-ignore -->
             <form action="">
               <input
                 class="search-input"
@@ -60,8 +66,9 @@
               </button>
             </form>
           </div>
+          <!-- prettier-ignore -->
           <div class="cart-box">
-             <a class="header-user-links" href="viber://chat?number=38163287684">
+             <a class="header-user-links mobile-deactive" href="viber://chat?number=38163287684">
               <img class="sofija-viber-img" src="img/home-page/sofija_viber.webp" alt="Sofija viber">
               <p class="cart-text">Pitajte Sofiju</p>
              </a>
@@ -73,19 +80,29 @@
               <i class="fal fa-user"></i>
               <p class="cart-text">Prijavi se</p>
              </a>
+             <i class="fal fa-bars header-user-links"></i>
             </div>
         </div>
         <div class="header-text-container">
           <h1>Petwebshop - Pet shop hrana i oprema za kućne ljubimce</h1>
         </div>
-          <div class="fixed-nav">
-        <nav class="navigation">
-          <ul class="navigation-list">
-            <li class="bars">
-              <i class="fal fa-bars"></i> <span>Kategorije</span>
+        <div class="fixed-nav">
+          <ul class="mobile-tablet-main-link ul-icons-container">
+            <li class="mobile-tablet-main-link fixed-icon">
+              <i class="fas fa-arrow-left"></i>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+            <li class="mobile-tablet-main-link fixed-icon">
+              <i class="fas fa-times"></i>
+            </li>
+          </ul>
+          <nav class="navigation">
+            <ul class="navigation-list">
+              <li class="bars">
+                <i class="fal fa-bars"></i> <span>Kategorije</span>
+              </li>
+
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/psi-link.webp" loading="lazy" alt="Milisav" />
                 <span>Psi</span>
@@ -218,8 +235,8 @@
                 </ul>
                 </div>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/macke-link.webp" loading="lazy" alt="Sofija" />
                 <span>Mačke</span>
@@ -340,8 +357,8 @@
                 </ul>
                 </div>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/male-zivotinje-link.webp" loading="lazy" alt="Petko" />
                 <span>Male životinje</span>
@@ -474,8 +491,8 @@
                 </ul>
                 </div>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/ptice-link.webp" loading="lazy" alt="Kica" />
                 <span>Ptice</span>
@@ -590,8 +607,8 @@
                 </ul>
                 </div>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/akvaristika-link.webp" loading="lazy" alt="Zaklina" />
                 <span>Akvaristika</span>
@@ -610,8 +627,8 @@
                 </ul>
                 </div>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/teraristika-link.webp" loading="lazy" alt="Trta" />
                 <span>Teraristika</span>
@@ -648,8 +665,8 @@
                 </ul>
                 </div>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/konji-link.webp" loading="lazy" alt="Dobrila" />
                 <span>Konji</span>
@@ -674,8 +691,8 @@
                 </ul>
                 </div>
             </li>
-            <!-- prettier-ignore -->
-            <li class="navigation-main-link">
+              <!-- prettier-ignore -->
+              <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <i class="fal fa-user-circle"></i>
                 <span>Moj nalog</span>
@@ -706,9 +723,38 @@
                 </ul>
                 </div>
             </li>
-          </ul>
-        </nav>
-      </div>
+              <li class="navigation-main-link mobile-tablet-main-link">
+                <a
+                  class="navigation-main-link-item"
+                  href="viber://chat?number=38163287684"
+                >
+                  <img
+                    src="img/home-page/sofija_viber.webp"
+                    alt="Sofija viber"
+                  />
+                  <span>Pitajte Sofiju</span>
+                </a>
+              </li>
+
+              <li class="navigation-main-link mobile-tablet-main-link">
+                <a class="navigation-main-link-item" href="">
+                  <img src="img/home-page/Cile.png" alt="Cile akcije" />
+                  <span>Akcije i popusti</span>
+                </a>
+              </li>
+              <li class="navigation-main-link mobile-tablet-main-link">
+                <a class="navigation-main-link-item" href="">
+                  <img
+                    class="logo-header-img navigation-logo"
+                    src="img/home-page/logo.png"
+                    alt="Logo"
+                    loading="lazy"
+                  />
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
     <main class="main">
