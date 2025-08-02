@@ -24,6 +24,8 @@ document.querySelectorAll(".swiper").forEach((swiperEl) => {
       1440: { slidesPerView: 5, spaceBetween: 10 },
       1024: { slidesPerView: 4 },
       768: { slidesPerView: 3 },
+      525: { slidesPerView: 3 },
+      505: { slidesPerView: 2 },
       480: { slidesPerView: 1 },
     },
   });
@@ -168,6 +170,9 @@ window.addEventListener("load", () => {
 });
 
 // Main function
+const openMenuBtn = document.querySelector(".open-menu");
+const closeMenuBtn = document.querySelector(".close-menu");
+const fixedNavigation = document.querySelector(".fixed-nav");
 let headerMainContainer = document.querySelector(".main-header-container");
 let returnBtn = document.querySelector(".return-btn");
 let headerTextContainer = document.querySelector(".header-text-container");
@@ -250,8 +255,48 @@ returnBtn.addEventListener("click", function (e) {
   e.preventDefault();
   isClicked = true;
 
-  // Odmah ukloni active-heigth kada se klikne dugme
-
   headerMainContainer.scrollIntoView({ behavior: "smooth" });
   searchBarElement.classList.remove("active-heigth");
+});
+let navigationMainLinks = document.querySelectorAll(
+  ".navigation-main-link .navigation-main-link-item"
+);
+
+let navigationContainerLinks = document.querySelectorAll(
+  ".navigation-container a"
+);
+
+const listener = function (e) {
+  e.preventDefault();
+  setTimeout(() => {
+    console.log("links allowed!");
+    allowLinks();
+  }, 600);
+};
+
+function addListeners() {
+  navigationContainerLinks.forEach((link) => {
+    link.addEventListener("click", listener);
+  });
+}
+
+function allowLinks() {
+  navigationContainerLinks.forEach(function (item) {
+    item.removeEventListener("click", listener);
+  });
+}
+
+addListeners();
+
+openMenuBtn.addEventListener("click", function (e) {
+  fixedNavigation.classList.add("show-menu");
+  navigationMainLinks.forEach((link) => {
+    link.removeAttribute("href");
+  });
+
+  addListeners();
+});
+
+closeMenuBtn.addEventListener("click", function (e) {
+  fixedNavigation.classList.remove("show-menu");
 });

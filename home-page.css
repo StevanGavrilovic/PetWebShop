@@ -53,6 +53,8 @@ li {
   --section-slide-img-l: 230px;
   --section-slide-img-m: 140px;
   --section-slide-img-s: 115px;
+
+  --section-height-mob-tab-l: 70dvh;
   --fixed-nav-909px: 94.3dvh;
 
   --footer-top-margin: 30px;
@@ -435,10 +437,6 @@ body {
 
 /* FIXED NAV START */
 
-.mobile-tablet-main-link {
-  display: none;
-}
-
 .fixed-nav {
   position: fixed;
   left: 0;
@@ -461,7 +459,7 @@ body {
   width: var(--hover-width);
 }
 
-.navigation-list li:last-child {
+.navigation-list .account-link {
   margin-top: auto;
   white-space: nowrap;
 }
@@ -594,6 +592,10 @@ body {
   width: 50px;
   height: 70px;
   object-fit: contain;
+}
+
+.mobile-tablet-main-link {
+  display: none;
 }
 
 /* FIXED NAV END */
@@ -1633,8 +1635,35 @@ footer .main {
 @media screen and (max-width: 909px) {
   /* Navigation */
 
+  .header-input-active {
+    top: -140px;
+  }
+  .header-input {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .logo-header-img {
+    width: 40%;
+  }
+  .cart-box {
+    width: 40%;
+    justify-content: end;
+  }
+
+  .input-box {
+    order: 3;
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .mobile-tablet-main-link {
-    display: block;
+    display: flex;
+  }
+
+  .mobile-tablet-main-link:last-child {
+    box-shadow: unset;
   }
 
   .mobile-deactive {
@@ -1644,9 +1673,13 @@ footer .main {
   .fixed-nav {
     right: 0;
     bottom: 0;
-    transform: translateX(-100%);
-    transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateX(100%);
+    transition: 1s ease-in-out;
     will-change: transform;
+  }
+
+  .show-menu {
+    transform: translateX(0%);
   }
 
   .bars {
@@ -1699,11 +1732,11 @@ footer .main {
     all: unset;
   }
 
-  .navigation-list li:last-child {
+  .navigation-list .account-link {
     margin-top: 0px;
   }
 
-  .navigation-list li:last-child > a {
+  .navigation-list .account-link > a {
     justify-content: center !important;
   }
   .bars,
@@ -1728,6 +1761,12 @@ footer .main {
     font-size: 25px;
   }
 
+  .navigation-main-link:hover .navigation-container {
+    transform: translateY(0%);
+    transition: 0.2s ease-out;
+    border-left-color: unset;
+  }
+
   .navigation-container {
     grid-template-columns: repeat(2, 1fr);
     height: var(--fixed-nav-909px);
@@ -1737,10 +1776,10 @@ footer .main {
     right: 0;
     left: 0;
     bottom: 0;
+    transform: translateY(100%);
+    transition: 1s ease-out;
   }
-  .navigation-main-link:hover .navigation-container {
-    border-left-color: unset;
-  }
+
   .navigation-container {
     grid-auto-rows: minmax(auto, auto);
   }
@@ -1750,6 +1789,7 @@ footer .main {
   .navigation-container-link-item {
     font-size: var(--p-font-size-l);
   }
+
   .navigation-container-link > h3 {
     font-size: var(--p-font-size-xl);
   }
@@ -1761,4 +1801,97 @@ footer .main {
   }
 
   /* Navigation */
+
+  /* section slider */
+
+  .section-img-container {
+    align-items: center;
+  }
+
+  .img-container {
+    flex-wrap: wrap;
+  }
+
+  .dots {
+    top: -5px;
+  }
+
+  .slide {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-img-container {
+    height: fit-content;
+  }
+
+  .slider .slide img {
+    width: 45%;
+  }
+
+  .section-link {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .slider {
+    height: var(--section-height-mob-tab-l);
+  }
+  .section-img-title {
+    margin-bottom: 20px;
+  }
+
+  .center-img-container {
+    height: fit-content;
+  }
+
+  .navigation-container ul:hover {
+    box-shadow: var(--shadow-lg);
+    transition: 0.1s ease-in;
+  }
+
+  /* Section sLider end */
+
+  /* Footer */
+
+  .bank-info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+  }
+  /* Footer ends */
+}
+
+@media screen and (max-width: 550px) {
+  /* footer */
+
+  .footer-info-contraner,
+  .footer-contact {
+    text-align: start;
+  }
+
+  .footer-contact > img {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .footer-info-contraner > h2 {
+    text-align: start;
+  }
+
+  .footer-container > div {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-list li:last-child {
+    flex-direction: column;
+    align-items: start !important;
+    justify-content: start !important;
+  }
+
+  /* footer */
 }
