@@ -33,15 +33,13 @@ document.querySelectorAll(".swiper").forEach((swiperEl) => {
 });
 
 document.querySelectorAll(".slider").forEach((slider, index) => {
-  // Pronađi sve elemente unutar trenutnog slidera
   const slides = slider.querySelectorAll(".slide");
-  const dotContainer = slider.nextElementSibling; // Pretpostavka da je dots container odmah posle slidera
+  const dotContainer = slider.nextElementSibling;
   let maxSlide = slides.length;
   let curSlide = 0;
 
-  // Kreiranje tačkica
   const createDots = function () {
-    dotContainer.innerHTML = ""; // Očisti postojeće tačkice
+    dotContainer.innerHTML = "";
 
     slides.forEach(function (_, i) {
       dotContainer.insertAdjacentHTML(
@@ -55,7 +53,6 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
   firstSlideClone.classList.add("clone");
   slider.appendChild(firstSlideClone);
 
-  // Sada imamo sve slide-ove uključujući klon
   const allSlides = slider.querySelectorAll(".slide");
 
   const activateDot = function (slide) {
