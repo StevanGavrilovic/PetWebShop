@@ -197,51 +197,25 @@ let activeHeight = function () {
   if (scrollListenerAdded) return;
   scrollListenerAdded = true;
 
-  console.log("Scroll listener inicijalizovan"); // Debug
-
-  const handleScroll = function () {
-    let currentScroll =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
-
-    console.log(
-      "Scroll pozicija:",
-      currentScroll,
-      "Poslednja:",
-      lastScrollTop,
-      "isClicked:",
-      isClicked
-    ); // Debug
-
-    if (isClicked) {
-      return;
+  let previousScrollTop = 0;
+  
+  const handleScroll = () => {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (currentScrollTop > previousScrollTop && currentScrollTop > 100) {
+      // Scrolling down
+      searchBarElement?.classList.remove("active-heigth");
+    } else if (currentScrollTop < previousScrollTop) {
+      // Scrolling up
+      searchBarElement?.classList.add("active-heigth");
     }
-
-    // Smanji toleranciju za mobilne uređaje
-    const scrollDifference = Math.abs(currentScroll - lastScrollTop);
-    if (scrollDifference < 2) {
-      return;
-    }
-
-    // Scroll gore - prikaži header
-    if (currentScroll < lastScrollTop && currentScroll > 50) {
-      console.log("Scroll gore - dodajem active-heigth"); // Debug
-      if (searchBarElement) {
-        searchBarElement.classList.add("active-heigth");
-      }
-    }
-    // Scroll dole - sakrij header
-    else if (currentScroll > lastScrollTop && currentScroll > 50) {
-      console.log("Scroll dole - uklanjam active-heigth"); // Debug
-      if (searchBarElement) {
-        searchBarElement.classList.remove("active-heigth");
-      }
-    }
-
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Za iOS bounce effect
+    
+    previousScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
   };
+
+  // Samo jedan event listener
+  window.addEventListener("scroll", handleScroll, { passive: true });
+};
 
   // Throttled scroll handler
   let scrollTimeout;
