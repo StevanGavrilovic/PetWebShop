@@ -185,7 +185,7 @@ let lastScrollTop = 0; // Inicijalizuj sa 0 umesto window.scrollY
 let scrollListenerAdded = false;
 let isFixed = false;
 let isClicked = false;
-let ticking = false; // Dodato za throttling
+// Ukloni ticking varijablu jer je zamenjena throttling-om
 
 // Kreiranje placeholder elementa da sprečimo "skok" sadržaja
 let placeholder = document.createElement("div");
@@ -197,52 +197,99 @@ let activeHeight = function () {
   if (scrollListenerAdded) return;
   scrollListenerAdded = true;
 
+  console.log("Scroll listener inicijalizovan"); // Debug
+
   const handleScroll = function () {
-    if (!ticking) {
-      requestAnimationFrame(function () {
-        let currentScroll =
-          window.pageYOffset || document.documentElement.scrollTop;
+    let currentScroll =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
-        if (isClicked) {
-          ticking = false;
-          return;
-        }
+    console.log(
+      "Scroll pozicija:",
+      currentScroll,
+      "Poslednja:",
+      lastScrollTop,
+      "isClicked:",
+      isClicked
+    ); // Debug
 
-        // Dodaj toleranciju za male promene scroll pozicije
-        const scrollDifference = Math.abs(currentScroll - lastScrollTop);
-        if (scrollDifference < 5) {
-          ticking = false;
-          return;
-        }
-
-        if (currentScroll < lastScrollTop && currentScroll > 0) {
-          searchBarElement.classList.add("active-heigth");
-        } else if (currentScroll > lastScrollTop) {
-          searchBarElement.classList.remove("active-heigth");
-        }
-
-        lastScrollTop = currentScroll;
-        ticking = false;
-      });
-      ticking = true;
+    if (isClicked) {
+      return;
     }
+
+    // Smanji toleranciju za mobilne uređaje
+    const scrollDifference = Math.abs(currentScroll - lastScrollTop);
+    if (scrollDifference < 2) {
+      return;
+    }
+
+    // Scroll gore - prikaži header
+    if (currentScroll < lastScrollTop && currentScroll > 50) {
+      console.log("Scroll gore - dodajem active-heigth"); // Debug
+      if (searchBarElement) {
+        searchBarElement.classList.add("active-heigth");
+      }
+    }
+    // Scroll dole - sakrij header
+    else if (currentScroll > lastScrollTop && currentScroll > 50) {
+      console.log("Scroll dole - uklanjam active-heigth"); // Debug
+      if (searchBarElement) {
+        searchBarElement.classList.remove("active-heigth");
+      }
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Za iOS bounce effect
   };
 
-  // Dodaj event listener-e za različite scroll event-e
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  document.addEventListener("scroll", handleScroll, { passive: true });
+  // Throttled scroll handler
+  let scrollTimeout;
+  const throttledScroll = function () {
+    if (scrollTimeout) {
+      return;
+    }
+    scrollTimeout = setTimeout(function () {
+      handleScroll();
+      scrollTimeout = null;
+    }, 16); // ~60fps
+  };
 
-  // Za iOS uređaje - dodaj touchmove event
+  // Dodaj multiple event listener-e za različite uređaje
+  window.addEventListener("scroll", throttledScroll, { passive: true });
+  document.addEventListener("scroll", throttledScroll, { passive: true });
+
+  // Za touch uređaje
+  let touchStartY = 0;
+  let touchEndY = 0;
+
+  document.addEventListener(
+    "touchstart",
+    function (e) {
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+
   document.addEventListener(
     "touchmove",
-    function () {
-      if (!ticking) {
-        requestAnimationFrame(handleScroll);
-        ticking = true;
+    function (e) {
+      touchEndY = e.touches[0].clientY;
+
+      // Simuliraj scroll na osnovu touch kretanja
+      const touchDiff = touchStartY - touchEndY;
+      if (Math.abs(touchDiff) > 10) {
+        // Minimalno kretanje
+        handleScroll();
       }
     },
     { passive: true }
   );
+
+  // Direktan poziv za testiranje
+  setTimeout(() => {
+    handleScroll();
+  }, 100);
 };
 
 // POBOLJŠAN INTERSECTION OBSERVER
