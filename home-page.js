@@ -26,7 +26,8 @@ document.querySelectorAll(".swiper").forEach((swiperEl) => {
       768: { slidesPerView: 3 },
       525: { slidesPerView: 3 },
       505: { slidesPerView: 2 },
-      480: { slidesPerView: 1 },
+      480: { slidesPerView: 2 },
+      360: { slidesPerView: 2 },
     },
   });
 });
@@ -126,6 +127,7 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
 });
 
 let slidersImgContainer = document.querySelectorAll(".slider .slide");
+let imageTimeouts = []; // DODATO: Niz za čuvanje timeout ID-jeva
 
 const slidersImgContainerCallback = (entries) => {
   entries.forEach((entry, index) => {
@@ -137,9 +139,11 @@ const slidersImgContainerCallback = (entries) => {
       });
     if (entry.isIntersecting) {
       sliderImgs.forEach((img, i) => {
-        setInterval(function () {
+        // ISPRAVKA: setTimeout umesto setInterval
+        const timeoutId = setTimeout(function () {
           img.classList.add("show-slide-img");
         }, 150 * i);
+        imageTimeouts.push(timeoutId); // Sačuvaj timeout ID
       });
     }
   });
@@ -164,7 +168,8 @@ window.addEventListener("load", () => {
   }, 500);
   slidersImgContainer[1].style.opacity = "0";
 
-  setInterval(function () {
+  // ISPRAVKA: setTimeout umesto setInterval
+  setTimeout(function () {
     slidersImgContainer[1].style.opacity = "1";
   }, 1100);
 });
@@ -258,18 +263,19 @@ returnBtn.addEventListener("click", function (e) {
   headerMainContainer.scrollIntoView({ behavior: "smooth" });
   searchBarElement.classList.remove("active-heigth");
 });
-let navigationMainLinks = document.querySelectorAll(
+
+let navigationMainLinksItems = document.querySelectorAll(
   ".navigation-main-link .navigation-main-link-item"
 );
 
 let navigationContainerLinks = document.querySelectorAll(
   ".navigation-container a"
 );
+let navigationMainLink = document.querySelectorAll(".navigation-main-link");
 
 const listener = function (e) {
   e.preventDefault();
   setTimeout(() => {
-    console.log("links allowed!");
     allowLinks();
   }, 600);
 };
@@ -288,10 +294,23 @@ function allowLinks() {
 
 addListeners();
 
+// DODATO: Niz za čuvanje timeout ID-jeva za meni animacije
+let menuTimeouts = [];
+
 openMenuBtn.addEventListener("click", function (e) {
   fixedNavigation.classList.add("show-menu");
-  navigationMainLinks.forEach((link) => {
+  navigationMainLinksItems.forEach((link) => {
     link.removeAttribute("href");
+  });
+
+  navigationMainLink.forEach((link, i) => {
+    const timeoutId = setTimeout(
+      function () {
+        link.classList.add("show-navigation-main-link");
+      },
+      1000 + 150 * i
+    ); // 1000ms + staggered delay
+    menuTimeouts.push(timeoutId);
   });
 
   addListeners();
@@ -299,4 +318,37 @@ openMenuBtn.addEventListener("click", function (e) {
 
 closeMenuBtn.addEventListener("click", function (e) {
   fixedNavigation.classList.remove("show-menu");
+
+  // ISPRAVKA: Obriši sve timeout-ove koji možda još uvek čekaju
+  menuTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+  menuTimeouts = []; // Resetuj niz
+
+  navigationMainLink.forEach((link, i) => {
+    link.classList.remove("show-navigation-main-link");
+  });
+
+  // DODATO: Resetuj strelicu kada se zatvori meni
+  let returnArrow = document.querySelector(".fa-arrow-left");
+  if (returnArrow) {
+    returnArrow.style.opacity = "0";
+  }
+  linkOpen = false;
+});
+
+let returnArrow = document.querySelector(".fa-arrow-left");
+let linkOpen = false;
+
+fixedNavigation.addEventListener("click", function (e) {
+  if (
+    e.target.classList.contains("navigation-main-link-item") ||
+    e.target.classList.contains("navigation-list")
+  ) {
+    // ISPRAVKA: Samo prikaži strelicu, ne toggle-uj
+    returnArrow.style.opacity = "1";
+    linkOpen = true;
+  } else if (e.target.classList.contains("fa-arrow-left")) {
+    // DODATO: Ako se klikne na strelicu, sakrij je
+    returnArrow.style.opacity = "0";
+    linkOpen = false;
+  }
 });
