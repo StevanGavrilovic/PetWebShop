@@ -1799,6 +1799,12 @@ footer .main {
     padding: 10px;
   }
 
+  .close-menu {
+    color: var(--primary-color);
+  }
+  .fa-arrow-left {
+    color: var(--secondary-color);
+  }
   /* Navigation */
 
   /* section slider */
