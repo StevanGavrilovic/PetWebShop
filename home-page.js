@@ -198,10 +198,11 @@ let activeHeight = function () {
   scrollListenerAdded = true;
 
   let previousScrollTop = 0;
-  
+
   const handleScroll = () => {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
+    const currentScrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
+
     if (currentScrollTop > previousScrollTop && currentScrollTop > 100) {
       // Scrolling down
       searchBarElement?.classList.remove("active-heigth");
@@ -209,61 +210,12 @@ let activeHeight = function () {
       // Scrolling up
       searchBarElement?.classList.add("active-heigth");
     }
-    
+
     previousScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
   };
 
   // Samo jedan event listener
   window.addEventListener("scroll", handleScroll, { passive: true });
-};
-
-  // Throttled scroll handler
-  let scrollTimeout;
-  const throttledScroll = function () {
-    if (scrollTimeout) {
-      return;
-    }
-    scrollTimeout = setTimeout(function () {
-      handleScroll();
-      scrollTimeout = null;
-    }, 16); // ~60fps
-  };
-
-  // Dodaj multiple event listener-e za različite uređaje
-  window.addEventListener("scroll", throttledScroll, { passive: true });
-  document.addEventListener("scroll", throttledScroll, { passive: true });
-
-  // Za touch uređaje
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  document.addEventListener(
-    "touchstart",
-    function (e) {
-      touchStartY = e.touches[0].clientY;
-    },
-    { passive: true }
-  );
-
-  document.addEventListener(
-    "touchmove",
-    function (e) {
-      touchEndY = e.touches[0].clientY;
-
-      // Simuliraj scroll na osnovu touch kretanja
-      const touchDiff = touchStartY - touchEndY;
-      if (Math.abs(touchDiff) > 10) {
-        // Minimalno kretanje
-        handleScroll();
-      }
-    },
-    { passive: true }
-  );
-
-  // Direktan poziv za testiranje
-  setTimeout(() => {
-    handleScroll();
-  }, 100);
 };
 
 // POBOLJŠAN INTERSECTION OBSERVER
