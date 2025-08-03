@@ -163,50 +163,89 @@ window.addEventListener("load", () => {
       observerSlider.observe(slider);
     });
   }, 500);
-  slidersImgContainer[1].style.opacity = "0";
+  if (slidersImgContainer[1]) {
+    slidersImgContainer[1].style.opacity = "0";
 
-  // ISPRAVKA: setTimeout umesto setInterval
-  setTimeout(function () {
-    slidersImgContainer[1].style.opacity = "1";
-  }, 1100);
+    // ISPRAVKA: setTimeout umesto setInterval
+    setTimeout(function () {
+      slidersImgContainer[1].style.opacity = "1";
+    }, 1100);
+  }
 });
 
 // Main function
 const openMenuBtn = document.querySelector(".open-menu");
 const closeMenuBtn = document.querySelector(".close-menu");
 const fixedNavigation = document.querySelector(".fixed-nav");
-let headerMainContainer = document.querySelector(".main-header-container");
+let headerMainContainer = document.querySelector("header");
 let returnBtn = document.querySelector(".return-btn");
 let headerTextContainer = document.querySelector(".header-text-container");
 let searchBarElement = document.querySelector(".header-input");
-let lastScrollTop = window.scrollY;
+let lastScrollTop = 0; // Inicijalizuj sa 0 umesto window.scrollY
 let scrollListenerAdded = false;
 let isFixed = false;
 let isClicked = false;
+let ticking = false; // Dodato za throttling
 
 // Kreiranje placeholder elementa da sprečimo "skok" sadržaja
 let placeholder = document.createElement("div");
 placeholder.style.display = "none";
 placeholder.classList.add("header-placeholder");
 
+// POBOLJŠANA SCROLL FUNKCIJA ZA MOBILNE UREĐAJE
 let activeHeight = function () {
   if (scrollListenerAdded) return;
   scrollListenerAdded = true;
 
-  document.addEventListener("scroll", function () {
-    let currentScroll = window.scrollY;
+  const handleScroll = function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        let currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
 
-    if (isClicked) return;
+        if (isClicked) {
+          ticking = false;
+          return;
+        }
 
-    if (currentScroll < lastScrollTop) {
-      searchBarElement.classList.add("active-heigth");
-    } else {
-      searchBarElement.classList.remove("active-heigth");
+        // Dodaj toleranciju za male promene scroll pozicije
+        const scrollDifference = Math.abs(currentScroll - lastScrollTop);
+        if (scrollDifference < 5) {
+          ticking = false;
+          return;
+        }
+
+        if (currentScroll < lastScrollTop && currentScroll > 0) {
+          searchBarElement.classList.add("active-heigth");
+        } else if (currentScroll > lastScrollTop) {
+          searchBarElement.classList.remove("active-heigth");
+        }
+
+        lastScrollTop = currentScroll;
+        ticking = false;
+      });
+      ticking = true;
     }
-    lastScrollTop = currentScroll;
-  });
+  };
+
+  // Dodaj event listener-e za različite scroll event-e
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  document.addEventListener("scroll", handleScroll, { passive: true });
+
+  // Za iOS uređaje - dodaj touchmove event
+  document.addEventListener(
+    "touchmove",
+    function () {
+      if (!ticking) {
+        requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
 };
 
+// POBOLJŠAN INTERSECTION OBSERVER
 const headerTextElementCallback = (entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting && !isFixed) {
@@ -244,22 +283,52 @@ const headerTextElementCallback = (entries) => {
   });
 };
 
+// Povećaj root margin za bolje ponašanje na mobilnim uređajima
 const options = {
   root: null,
-  rootMargin: "50px",
-  threshold: 0,
+  rootMargin: "10px 0px -10px 0px", // Poboljšano za mobilne
+  threshold: [0, 0.1, 0.5, 1], // Više threshold vrednosti
 };
 
 const observer = new IntersectionObserver(headerTextElementCallback, options);
-observer.observe(headerTextContainer);
 
-returnBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  isClicked = true;
+// Proveri da li element postoji pre observing-a
+if (headerTextContainer) {
+  observer.observe(headerTextContainer);
+}
 
-  headerMainContainer.scrollIntoView({ behavior: "smooth" });
-  searchBarElement.classList.remove("active-heigth");
-});
+// POBOLJŠAN RETURN BUTTON
+if (returnBtn) {
+  returnBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    isClicked = true;
+
+    // Za mobilne uređaje koristi različite opcije
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
+    if (isMobile) {
+      // Za mobilne - koristi window.scrollTo
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // Za desktop - koristi scrollIntoView
+      headerMainContainer.scrollIntoView({ behavior: "smooth" });
+    }
+
+    searchBarElement.classList.remove("active-heigth");
+
+    // Reset isClicked nakon scroll-a
+    setTimeout(() => {
+      isClicked = false;
+    }, 1000);
+  });
+}
 
 let navigationMainLinksItems = document.querySelectorAll(
   ".navigation-main-link .navigation-main-link-item"
@@ -294,58 +363,73 @@ addListeners();
 // DODATO: Niz za čuvanje timeout ID-jeva za meni animacije
 let menuTimeouts = [];
 
-openMenuBtn.addEventListener("click", function (e) {
-  fixedNavigation.classList.add("show-menu");
-  navigationMainLinksItems.forEach((link) => {
-    link.removeAttribute("href");
+if (openMenuBtn) {
+  openMenuBtn.addEventListener("click", function (e) {
+    if (fixedNavigation) {
+      fixedNavigation.classList.add("show-menu");
+    }
+
+    navigationMainLinksItems.forEach((link) => {
+      link.removeAttribute("href");
+    });
+
+    navigationMainLink.forEach((link, i) => {
+      const timeoutId = setTimeout(
+        function () {
+          link.classList.add("show-navigation-main-link");
+        },
+        1000 + 150 * i
+      ); // 1000ms + staggered delay
+      menuTimeouts.push(timeoutId);
+    });
+
+    addListeners();
   });
+}
 
-  navigationMainLink.forEach((link, i) => {
-    const timeoutId = setTimeout(
-      function () {
-        link.classList.add("show-navigation-main-link");
-      },
-      1000 + 150 * i
-    ); // 1000ms + staggered delay
-    menuTimeouts.push(timeoutId);
+if (closeMenuBtn) {
+  closeMenuBtn.addEventListener("click", function (e) {
+    if (fixedNavigation) {
+      fixedNavigation.classList.remove("show-menu");
+    }
+
+    // ISPRAVKA: Obriši sve timeout-ove koji možda još uvek čekaju
+    menuTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+    menuTimeouts = []; // Resetuj niz
+
+    navigationMainLink.forEach((link, i) => {
+      link.classList.remove("show-navigation-main-link");
+    });
+
+    // DODATO: Resetuj strelicu kada se zatvori meni
+    let returnArrow = document.querySelector(".fa-arrow-left");
+    if (returnArrow) {
+      returnArrow.style.opacity = "0";
+    }
+    linkOpen = false;
   });
-
-  addListeners();
-});
-
-closeMenuBtn.addEventListener("click", function (e) {
-  fixedNavigation.classList.remove("show-menu");
-
-  // ISPRAVKA: Obriši sve timeout-ove koji možda još uvek čekaju
-  menuTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
-  menuTimeouts = []; // Resetuj niz
-
-  navigationMainLink.forEach((link, i) => {
-    link.classList.remove("show-navigation-main-link");
-  });
-
-  // DODATO: Resetuj strelicu kada se zatvori meni
-  let returnArrow = document.querySelector(".fa-arrow-left");
-  if (returnArrow) {
-    returnArrow.style.opacity = "0";
-  }
-  linkOpen = false;
-});
+}
 
 let returnArrow = document.querySelector(".fa-arrow-left");
 let linkOpen = false;
 
-fixedNavigation.addEventListener("click", function (e) {
-  if (
-    e.target.classList.contains("navigation-main-link-item") ||
-    e.target.classList.contains("navigation-list")
-  ) {
-    // ISPRAVKA: Samo prikaži strelicu, ne toggle-uj
-    returnArrow.style.opacity = "1";
-    linkOpen = true;
-  } else if (e.target.classList.contains("fa-arrow-left")) {
-    // DODATO: Ako se klikne na strelicu, sakrij je
-    returnArrow.style.opacity = "0";
-    linkOpen = false;
-  }
-});
+if (fixedNavigation) {
+  fixedNavigation.addEventListener("click", function (e) {
+    if (
+      e.target.classList.contains("navigation-main-link-item") ||
+      e.target.classList.contains("navigation-list")
+    ) {
+      // ISPRAVKA: Samo prikaži strelicu, ne toggle-uj
+      if (returnArrow) {
+        returnArrow.style.opacity = "1";
+      }
+      linkOpen = true;
+    } else if (e.target.classList.contains("fa-arrow-left")) {
+      // DODATO: Ako se klikne na strelicu, sakrij je
+      if (returnArrow) {
+        returnArrow.style.opacity = "0";
+      }
+      linkOpen = false;
+    }
+  });
+}
