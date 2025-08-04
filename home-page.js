@@ -271,7 +271,7 @@ let navigationMainLinksItems = document.querySelectorAll(
 let navigationContainerLinks = document.querySelectorAll(
   ".navigation-container a"
 );
-let navigationMainLink = document.querySelectorAll(".navigation-main-link");
+let navigationMainLinks = document.querySelectorAll(".navigation-main-link");
 
 const listener = function (e) {
   e.preventDefault();
@@ -303,7 +303,7 @@ openMenuBtn.addEventListener("click", function (e) {
     link.removeAttribute("href");
   });
 
-  navigationMainLink.forEach((link, i) => {
+  navigationMainLinks.forEach((link, i) => {
     const timeoutId = setTimeout(
       function () {
         link.classList.add("show-navigation-main-link");
@@ -323,7 +323,7 @@ closeMenuBtn.addEventListener("click", function (e) {
   menuTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
   menuTimeouts = []; // Resetuj niz
 
-  navigationMainLink.forEach((link, i) => {
+  navigationMainLinks.forEach((link, i) => {
     link.classList.remove("show-navigation-main-link");
   });
 
@@ -336,19 +336,13 @@ closeMenuBtn.addEventListener("click", function (e) {
 });
 
 let returnArrow = document.querySelector(".fa-arrow-left");
-let linkOpen = false;
 
-fixedNavigation.addEventListener("click", function (e) {
-  if (
-    e.target.classList.contains("navigation-main-link-item") ||
-    e.target.classList.contains("navigation-list")
-  ) {
-    // ISPRAVKA: Samo prikaži strelicu, ne toggle-uj
+document.addEventListener("click", function (e) {
+  const clickedInside = e.target.closest(".navigation-main-link");
+
+  if (clickedInside) {
     returnArrow.style.opacity = "1";
-    linkOpen = true;
-  } else if (e.target.classList.contains("fa-arrow-left")) {
-    // DODATO: Ako se klikne na strelicu, sakrij je
+  } else {
     returnArrow.style.opacity = "0";
-    linkOpen = false;
   }
 });
