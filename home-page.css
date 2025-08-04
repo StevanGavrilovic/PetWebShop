@@ -6,15 +6,51 @@
 
 @font-face {
   font-family: "Quicksand";
-  src: url("./font/quicksand/Quicksand-Regular.ttf") format("woff2");
-  font-weight: 400;
+  src:
+    url("./font/quicksand/Quicksand-SemiBold.woff2") format("woff2"),
+    url("./font/quicksand/Quicksand-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Quicksand";
-  src: url("./font/quicksand/Quicksand-SemiBold.ttf") format("woff2");
-  font-weight: 600;
+  src:
+    url("./font/quicksand/Quicksand-Medium.woff2") format("woff2"),
+    url("./font/quicksand/Quicksand-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src:
+    url("./font/quicksand/Quicksand-Regular.woff2") format("woff2"),
+    url("./font/quicksand/Quicksand-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src:
+    url("./font/quicksand/Quicksand-Bold.woff2") format("woff2"),
+    url("./font/quicksand/Quicksand-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src:
+    url("./font/quicksand/Quicksand-Light.woff2") format("woff2"),
+    url("./font/quicksand/Quicksand-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -169,7 +205,7 @@ body {
 }
 
 .header-promotions > li > img {
-  width: 150px;
+  width: 170px;
   position: relative;
   z-index: 1;
   transition: transform 0.3s ease;
@@ -394,13 +430,13 @@ body {
   height: 50px;
   font-family: var(--font-family);
   color: var(--link-color);
-  font-weight: 200;
+  font-weight: 600;
   text-shadow: 1px 1px 2px var(--text-color);
   text-align: var(--text-alignment);
 }
 
 .header-text-container h1 {
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--h1-font-size-xl);
 }
 
@@ -517,6 +553,7 @@ body {
   border-bottom: 1px solid var(--primary-color);
   border-top: 1px solid var(--primary-color);
   color: var(--primary-color);
+  font-weight: 800;
 }
 
 .navigation-main-link:hover .navigation-main-link-item {
@@ -1215,6 +1252,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: white;
+  margin: 0px -49px;
+
+  padding: 0 20px;
+  border-left: 1px solid var(--primary-color);
+  padding-top: 10px;
 }
 
 footer .main {
@@ -1249,10 +1292,15 @@ footer .main {
   padding-bottom: 15px;
 }
 
+.logo-bank-container .footer-info-contraner > h2 {
+  color: var(--text-color) !important;
+  text-shadow: 1px 1px 2px var(--background-color);
+}
+
 .footer-list-item,
 .footer-link {
   padding-bottom: 10px;
-  font-weight: 200;
+  font-weight: 600;
   text-shadow: 1px 1px 2px var(--text-color);
   font-family: var(--font-family);
   color: var(--link-color);
