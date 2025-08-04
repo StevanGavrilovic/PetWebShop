@@ -1,5 +1,5 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 
 /* RESET STYLES */
@@ -127,11 +127,6 @@ body {
     calc(var(--padding-width-fixed-nav) + var(--header-padding-right-left));
 }
 
-.fas,
-.fa-solid {
-  font-weight: 200;
-}
-
 /* HEADER PROMOTIONS */
 .header-promotions {
   display: flex;
@@ -250,31 +245,8 @@ body {
 }
 
 .header-input-active.active-heigth {
-  transform: translateY(0) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: all 0.3s ease-in-out !important;
-}
-
-.header-input-active:not(.active-heigth) {
-  transform: translateY(-100%) !important;
-  transition: all 0.3s ease-in-out !important;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .header-input-active {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-}
-
-/* iOS specific fix */
-@supports (-webkit-overflow-scrolling: touch) {
-  .header-input-active {
-    -webkit-overflow-scrolling: touch;
-  }
+  top: 0px;
+  transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Placeholder element */
