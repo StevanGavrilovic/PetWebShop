@@ -2048,6 +2048,10 @@ footer .main {
     top: 46% !important;
   }
 
+  .dodaj-u-korpu {
+    font-size: var(--add-to-cart-icon-font-size-l);
+  }
+
   /* Swiper ends */
 
   /* Blog card */
