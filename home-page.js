@@ -123,7 +123,7 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
   init();
 
   // Otkomentiraj za auto play
-  // startAutoPlay();
+  startAutoPlay();
 });
 
 let slidersImgContainer = document.querySelectorAll(".slider .slide");
