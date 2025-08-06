@@ -93,7 +93,7 @@ li {
   --border-radius: 20px;
   --section-height: 550px;
   --section-height-m: 500px;
-  --section-height-s: 385px;
+  --section-height-s: 430px;
   --section-center-img-container-max-height: 340px;
   --section-center-img-container-max-height-m: 280px;
   --section-center-img-container-max-height-s: 225px;
@@ -113,7 +113,7 @@ li {
   --blog-picure-height-m: 210px;
   /* Typography */
   --p-font-size-xl: 20px;
-  --p-font-size-l: 16px;
+  --p-font-size-l: 17px;
   --p-font-size-m: 15px;
   --p-font-size-s: 13px;
   --h1-font-size-xl: 26px;
@@ -127,6 +127,8 @@ li {
   --header-icons-font-size-m: 29px;
   --fixed-header-icons-font-size: 46px;
   --fixed-header-icons-font-size-m: 35px;
+  --add-to-cart-icon-font-size-xl: 26px;
+  --add-to-cart-icon-font-size-l: 20px;
   /* --font-family: "Roboto", sans-serif; */
   /* --font-family: "Montserrat", sans-serif; */
   --font-family: "Quicksand", sans-serif;
@@ -139,6 +141,9 @@ li {
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --product-input-container-shadow-l: 0 4px 6px 4px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
   --space-3: 12px;
@@ -148,6 +153,8 @@ li {
   --border-radius-lg: 16px;
 
   /* Spacing */
+  --padding-10: 10px;
+  --padding-5: 5px;
   --button-padding: 5px 10px;
   --section-button-padding: 10px 15px;
   --section-button-padding-m: 7px 10px;
@@ -241,6 +248,7 @@ body {
   font-family: var(--font-family);
   font-size: 14px;
   line-height: 1.2;
+  font-weight: bold;
   text-shadow: 1px 1px 2px var(--text-color);
 }
 
@@ -864,12 +872,12 @@ body {
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: var(--button-hover-color) !important;
+  color: var(--primary-color-opacity) !important;
 }
 
 .product-pic {
@@ -892,6 +900,7 @@ body {
   padding: 0 var(--space-3);
   transition: all var(--transition-base);
   opacity: 0;
+  color: var(--link-color);
   transform: translateY(10px);
   font-family: var(--font-family);
   font-weight: 500;
@@ -922,8 +931,90 @@ body {
   font-size: var(--p-font-size-l);
   font-family: var(--font-family);
   color: var(--body-font-color);
-  padding: var(--section-button-padding);
+  padding: 0px var(--padding-10);
   z-index: 1;
+  cursor: default !important;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  box-shadow: var(--product-input-container-shadow-l);
+  border-radius: var(--border-radius);
+  height: 50px;
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+
+.product-inputs {
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  height: 100%;
+}
+.add-to-cart-container {
+  padding: var(--padding-10);
+}
+.add-remove-quantity {
+  border: none;
+  text-align: center;
+  background: none;
+  background-color: var(--background-light-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  font-size: var(--p-font-size-xl);
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.added-quantity {
+  width: 50px;
+  text-align: center;
+  border: none;
+  height: 100%;
+}
+
+.added-quantity:hover {
+  border: 1px solid var(--secondary-color);
+}
+
+.dodaj-u-korpu {
+  width: 35%;
+  border: none;
+  font-family: var(--font-family);
+  color: var(--link-color) !important;
+  border: none;
+  text-align: center;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #15803d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  height: max-content;
+  font-size: var(--add-to-cart-icon-font-size-xl);
+  cursor: pointer;
+  padding: 10px;
+  height: 100%;
+  transition: 0.3s ease-out;
+}
+
+.dodaj-u-korpu:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-hover-color) 0%,
+    var(--secondary-color) 100%
+  );
+  transition: 0.3s ease-out;
+}
+
+.dodaj-u-korpu:hover > i {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  transition: 0.3s ease-out;
 }
 
 /* Section Slider */
@@ -1738,11 +1829,24 @@ footer .main {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    box-shadow: var(--shadow-lg);
     z-index: 8;
     position: relative;
   }
 
+  .ul-icons-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* ili koliko god želiš ispod */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--primary-color),
+      transparent
+    );
+  }
   .navigation-list {
     width: 100%;
     display: grid;
@@ -1768,6 +1872,7 @@ footer .main {
     align-items: center;
     height: 100%;
     justify-content: space-between;
+    border-radius: var(--border-radius);
   }
 
   .navigation-main-link {
@@ -1783,8 +1888,7 @@ footer .main {
   }
 
   .navigation-main-link-item > .fa-circle-user {
-    font-size: min(92px, 8dvh); /* kao max-width */
-    /* Nema potrebe za "height" ekvivalent kod font-size */
+    font-size: min(92px, 7.5dvh);
   }
 
   .navigation-main-link:hover {
@@ -1796,7 +1900,7 @@ footer .main {
   }
 
   .navigation-list .account-link > a {
-    justify-content: center !important;
+    justify-content: space-between !important;
   }
 
   .bars,
@@ -1840,6 +1944,7 @@ footer .main {
     right: 0;
     left: 0;
     bottom: 0;
+    padding-top: 0px;
     transform: translateY(100%);
     transition: 0s ease-out;
   }
@@ -1847,6 +1952,12 @@ footer .main {
   .navigation-container {
     grid-auto-rows: minmax(auto, auto);
   }
+
+  .navigation-container ul:hover {
+    box-shadow: var(--shadow-lg);
+    transition: 0.1s ease-in;
+  }
+
   .navigation-container-link img {
     width: 100px;
   }
@@ -1918,17 +2029,23 @@ footer .main {
     height: fit-content;
   }
 
-  .navigation-container ul:hover {
-    box-shadow: var(--shadow-lg);
-    transition: 0.1s ease-in;
-  }
-
   /* Section sLider end */
 
   /* Swiper */
 
   .swiper {
     height: var(--section-height-s);
+  }
+
+  .fast-view-container {
+    height: 40px;
+    padding: var(--space-3);
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 46% !important;
   }
 
   /* Swiper ends */
@@ -1948,15 +2065,19 @@ footer .main {
 
   .blog-card {
     width: 100%;
-    height: 350px;
-    max-height: 350px;
+    height: 380px;
+    max-height: 380px;
     margin: 30px auto 0;
+    max-width: 320px;
   }
 
   .blog-title {
     font-size: var(--h1-font-size-l);
   }
 
+  .blog-link {
+    font-size: var(--p-font-size-l);
+  }
   .second-card {
     padding: 1.5rem;
   }
@@ -1983,6 +2104,8 @@ footer .main {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin-bottom: unset;
+    padding-bottom: 10px;
   }
   /* Footer ends */
 }
@@ -2036,6 +2159,34 @@ footer .main {
     grid-template-columns: repeat(1, 1fr);
   }
 
+  .navigation-container ul:hover {
+    box-shadow: unset;
+  }
+
+  .navigation-container ul {
+    position: relative;
+    box-shadow: unset;
+  }
+
+  .navigation-container ul::after {
+    content: "";
+    position: absolute;
+    bottom: -20px; /* ili koliko god želiš ispod */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--primary-color),
+      transparent
+    );
+  }
+
+  .navigation-container ul:last-of-type::after {
+    all: unset;
+  }
+
   /* Header ends */
 
   /* Action  container*/
@@ -2044,6 +2195,23 @@ footer .main {
     bottom: 18%;
   }
   /* Action container ends */
+
+  /* Swiper */
+
+  .product-text {
+    padding: 0 var(--padding-5);
+  }
+
+  .added-quantity {
+    width: 30px;
+  }
+  .add-to-cart-container {
+    padding: var(--padding-10) var(--padding-5);
+  }
+  .dodaj-u-korpu {
+    font-size: var(--add-to-cart-icon-font-size-l);
+  }
+  /* Swiper ends */
 
   /* footer */
 
@@ -2073,8 +2241,9 @@ footer .main {
 
 @media (max-width: 480px) {
   .blog-card {
-    width: 290px;
-    height: 420px;
+    width: 100%;
+    max-width: unset;
+    height: 320px;
   }
 
   .blog-header {

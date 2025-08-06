@@ -174,6 +174,58 @@ window.addEventListener("load", () => {
   }, 1100);
 });
 
+// pdoduct function
+
+// Dohvaćamo sve elemente s klasom `add-button`, `minus-button`, i `added-quantity`
+let addButtons = document.querySelectorAll(".add-button");
+let minusButtons = document.querySelectorAll(".minus-button");
+let quantityInputs = document.querySelectorAll(".added-quantity");
+
+// Funkcija za promjenu količine pri kliku na gumb za dodavanje
+addButtons.forEach(function (addButton) {
+  addButton.addEventListener("click", function () {
+    let parent = this.parentElement;
+    let input = parent.querySelector(".added-quantity");
+    changeQuantity(input, 1);
+  });
+});
+
+// Funkcija za promjenu količine pri kliku na gumb za oduzimanje
+minusButtons.forEach(function (minusButton) {
+  minusButton.addEventListener("click", function () {
+    let parent = this.parentElement;
+    let input = parent.querySelector(".added-quantity");
+    changeQuantity(input, -1);
+  });
+});
+
+// Funkcija za promjenu količine pri ručnom unosu
+quantityInputs.forEach(function (input) {
+  input.addEventListener("change", function () {
+    let currentValue = parseInt(this.value);
+    if (isNaN(currentValue) || currentValue < 1) {
+      this.value = 1; // Postavljamo minimalnu vrijednost na 1 ako je unos neispravan
+    }
+  });
+  input.addEventListener("blur", function () {
+    // Nakon što korisnik završi s unosom, ažuriramo vrijednost
+    changeQuantity(this, 0);
+  });
+});
+
+// Funkcija za promjenu količine
+function changeQuantity(input, delta) {
+  let currentValue = parseInt(input.value);
+  if (isNaN(currentValue)) {
+    currentValue = 0;
+  }
+  let newValue = currentValue + delta;
+  if (newValue < 1) {
+    newValue = 1; // Postavljamo minimalnu vrijednost na 1
+  }
+  input.value = newValue;
+}
+
 // Main function
 const openMenuBtn = document.querySelector(".open-menu");
 const closeMenuBtn = document.querySelector(".close-menu");
