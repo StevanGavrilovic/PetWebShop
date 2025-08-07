@@ -72,6 +72,7 @@ li {
   --primary-color-opacity: #b32025b4;
   --secondary-color: #66af12;
   --background-color: #f0f0f0d3;
+  --background-color-no-opacity: #f0f0f0;
   --text-color: #000000;
   --link-color: #ffffff;
   --link-hover-color: var(--link-color);
@@ -100,6 +101,7 @@ li {
   --section-slide-img-l: 230px;
   --section-slide-img-m: 140px;
   --section-slide-img-s: 115px;
+  --gap-20: 20px;
 
   --section-height-mob-tab-l: 70dvh;
   --fixed-nav-909px: 94.3dvh;
@@ -153,6 +155,7 @@ li {
   --border-radius-lg: 16px;
 
   /* Spacing */
+  --padding-20: 20px;
   --padding-10: 10px;
   --padding-5: 5px;
   --button-padding: 5px 10px;
@@ -720,10 +723,6 @@ body {
 /* Main home page - end */
 
 /* SECTION START */
-.product-section-container {
-  text-align: center;
-  margin-bottom: var(--section-margin);
-}
 
 .section-title {
   display: flex;
@@ -925,7 +924,7 @@ body {
   transform: translateY(0);
 }
 
-.product-text {
+.product-title {
   margin-top: 8px;
   position: relative;
   font-size: var(--p-font-size-l);
@@ -1017,7 +1016,499 @@ body {
   transition: 0.3s ease-out;
 }
 
+/* Modal product */
+.product-section-container {
+  text-align: center;
+  margin-bottom: var(--section-margin);
+}
+
+.product-info-container,
+.select-container {
+  display: none;
+}
+
+.modal-container {
+  display: none;
+}
+
+.modal-container.show-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+  font-family: var(--font-family);
+  z-index: 9999;
+  opacity: 0;
+  animation: modalFadeIn 0.3s ease forwards;
+}
+
+@keyframes modalFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-owerlay {
+  padding: 35px var(--section-margin);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 90%;
+  max-width: 1350px;
+  height: 100%;
+  min-height: 650px;
+  max-height: 850px;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.726);
+  background-color: var(--background-color-no-opacity);
+  position: relative;
+  transform: scale(0.95);
+  animation: modalScaleIn 0.3s ease forwards;
+  overflow-y: auto;
+}
+
+@keyframes modalScaleIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Close button */
+
+.modal-owerlay::before:hover {
+  transform: scale(1.1);
+}
+
+.fast-view-product-img-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fast-view-product-img-container img {
+  width: 100%;
+  max-height: 750px;
+  object-fit: contain;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-color);
+}
+
+.fast-view-product-description-continer {
+  position: relative;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--padding-10);
+  max-height: 730px;
+}
+
+.close-menu-fast-view {
+  font-size: 30px;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.fast-view-title-brend-contaner {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: var(--padding-20);
+  min-height: 140px;
+}
+
+.fast-view-title-code {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  width: 70%;
+  height: 100%;
+}
+
+.fast-view-title-code .product-title {
+  margin: 0;
+  padding: 0;
+  font-size: var(--p-font-size-xl);
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.fast-view-title-code .product-code {
+  font-size: var(--p-font-size-m);
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.product-code > span {
+  font-weight: bolder;
+}
+
+.brend-img {
+  width: 50%;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  margin-left: var(--padding-10);
+  will-change: scale;
+  transition: 0.3s ease-out;
+}
+
+.brend-img:hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition: scale 0.3s ease-out;
+}
+
+.fast-view-product-description-continer > div {
+  position: relative;
+}
+
+.fast-view-product-description-continer > div:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    transparent
+  );
+}
+
+.fast-view-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* umesto space-evenly */
+  overflow-y: auto;
+  flex: 1; /* umesto flex-grow: 1 */
+  height: 0; /* forsira flex da radi pravilno */
+  margin-top: var(--padding-10);
+  padding-bottom: var(--padding-10);
+}
+
+.fast-view-description > h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 var(--padding-10) 0;
+  padding-bottom: var(--padding-10);
+}
+
+.fast-view-description .description-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.description-item {
+  padding-bottom: var(--padding-10);
+  font-size: var(--p-font-size-m);
+  line-height: 1.5;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.description-item:last-child {
+  padding-bottom: 0px;
+  border-bottom: none;
+}
+
+/* Cart section styling */
+.fast-view-cart {
+  padding-bottom: var(--padding-10);
+  min-height: 130px;
+}
+
+.fast-view-cart .add-to-cart-container {
+  padding: var(--padding-10) 0px;
+}
+
+.fast-view-cart .select-container {
+  display: block !important;
+  margin-bottom: var(--padding-20);
+}
+
+.fast-view-cart select {
+  width: 100%;
+  padding: var(--padding-10);
+  border: unset;
+  box-shadow: var(--product-input-container-shadow-l);
+  border-radius: 4px;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+
+.fast-view-cart .input-group {
+  width: 50%;
+  justify-self: end;
+}
+
+.icons-container {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-20);
+  padding-top: var(--padding-10);
+}
+
+.icons-container > i {
+  font-size: var(--header-icons-font-size);
+
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icons-container > i:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.more-info-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  min-height: 40px;
+  width: 100%;
+  padding-bottom: var(--padding-20);
+  padding-top: var(--padding-10);
+}
+
+.more-info {
+  display: inline-block;
+  width: 50%;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #15803d 100%);
+  text-align: var(--text-alignment);
+  padding: var(--section-button-padding);
+  border-radius: var(--border-radius-lg);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: var(--p-font-size-xl);
+  color: white;
+  border: none;
+
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.more-info:hover {
+  background: linear-gradient(
+    135deg,
+    var(--button-hover-color) 0%,
+    var(--secondary-color) 100%
+  );
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Facebook ikonica - primarna plava boja */
+.fa-facebook {
+  color: #1877f2; /* Facebook Blue */
+}
+
+/* Hover efekat */
+.fa-facebook:hover {
+  color: #166fe5; /* Tamnija plava za hover */
+}
+
+/* Ako želite gradient efekat */
+.fa-facebook.gradient {
+  background: linear-gradient(45deg, #1877f2, #42a5f5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Alternative klasične Facebook boje */
+.fa-facebook.classic {
+  color: #4267b2; /* Stara Facebook boja */
+}
+
+/* Za veći kontrast */
+.fa-facebook.dark {
+  color: #0d47a1; /* Tamnija verzija */
+}
+
+/* Animacija na hover */
+.fa-facebook.animated {
+  color: #1877f2;
+  transition: all 0.3s ease;
+}
+
+.fa-facebook.animated:hover {
+  color: #166fe5;
+  transform: scale(1.1);
+}
+
+/* Twitter/X ikonica - primarna plava boja */
+.fa-twitter {
+  color: #1da1f2; /* Twitter Blue */
+}
+
+/* Hover efekat */
+.fa-twitter:hover {
+  color: #0d8bd9; /* Tamnija plava za hover */
+}
+
+/* Nova X (Twitter) boja - crna */
+.fa-twitter.x-style {
+  color: #000000; /* Crna za X rebrand */
+}
+
+.fa-twitter.x-style:hover {
+  color: #333333; /* Tamno siva za hover */
+}
+
+/* Klasična Twitter boja */
+.fa-twitter.classic {
+  color: #1da1f2; /* Originalna Twitter plava */
+}
+
+/* Gradient efekat */
+.fa-twitter.gradient {
+  background: linear-gradient(45deg, #1da1f2, #42a5f5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Animacija na hover */
+.fa-twitter.animated {
+  color: #1da1f2;
+  transition: all 0.3s ease;
+}
+
+.fa-twitter.animated:hover {
+  color: #0d8bd9;
+  transform: scale(1.1);
+}
+
+/* Za X ikonicu sa animacijom */
+.fa-twitter.x-animated {
+  color: #000000;
+  transition: all 0.3s ease;
+}
+
+.fa-twitter.x-animated:hover {
+  color: #333333;
+  transform: scale(1.1);
+}
+
+/* Pinterest ikonica - primarna crvena boja */
+.fa-pinterest {
+  color: #e60023; /* Pinterest Red */
+}
+
+/* Hover efekat */
+.fa-pinterest:hover {
+  color: #cc001f; /* Tamnija crvena za hover */
+}
+
+/* Alternative Pinterest boje */
+.fa-pinterest.dark {
+  color: #bd081c; /* Tamno crvena */
+}
+
+.fa-pinterest.light {
+  color: #f92947; /* Svetlija crvena */
+}
+
+/* Gradient efekat */
+.fa-pinterest.gradient {
+  background: linear-gradient(45deg, #e60023, #ff4569);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Animacija na hover */
+.fa-pinterest.animated {
+  color: #e60023;
+  transition: all 0.3s ease;
+}
+
+.fa-pinterest.animated:hover {
+  color: #cc001f;
+  transform: scale(1.1);
+}
+
+/* Pulse animacija */
+.fa-pinterest.pulse {
+  color: #e60023;
+  animation: pinterest-pulse 2s infinite;
+}
+
+@keyframes pinterest-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Modal product ends */
+
 /* Section Slider */
+
+.product-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--h2-font-size-l);
+  margin-bottom: var(--section-margin);
+  font-weight: 600;
+  font-family: var(--font-family);
+  color: var(--primary-color);
+}
+
+.product-section-title::before,
+.product-section-title::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    transparent
+  );
+  margin: 0 1em;
+}
+
+.product-section-title::before {
+  right: -3.5em;
+  margin-left: 0%;
+}
+
+.product-section-title::after {
+  left: -3.5em;
+  margin-right: 0%;
+}
 
 .section-slider {
   width: 100%;
@@ -1617,6 +2108,11 @@ footer .main {
     min-height: var(--section-height-m);
   }
 
+  .section-title,
+  .section-img-title {
+    font-size: var(--h2-font-size-m);
+  }
+
   /* Section slider end */
 
   /* Action container */
@@ -1648,6 +2144,43 @@ footer .main {
 
   /* Action container ends */
 
+  .modal-owerlay {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+
+  .fast-view-product-img-container {
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  .fast-view-product-img-container img {
+    width: 25%;
+  }
+  .brend-img {
+    border: unset !important;
+    border-radius: unset !important;
+    width: 100%;
+    margin-left: unset;
+    margin-top: 10px;
+  }
+
+  .fast-view-title-brend-contaner {
+    flex-direction: column;
+    padding-bottom: unset;
+  }
+
+  .fast-view-product-description-continer {
+    width: 100%;
+    max-height: unset;
+  }
+
+  .close-menu-fast-view {
+    padding: 3px;
+  }
+
   .swiper-slide {
     min-height: var(--product-picture-height-m);
   }
@@ -1657,11 +2190,11 @@ footer .main {
   }
   /* product-section */
 
-  .section-title,
-  .section-img-title {
+  .product-section-title {
     font-size: var(--h2-font-size-m);
   }
-  .product-text {
+
+  .product-title {
     font-size: var(--p-font-size-m);
   }
   .section-link {
@@ -2036,8 +2569,25 @@ footer .main {
 
   /* Swiper */
 
+  .modal-owerlay {
+    width: 100%;
+  }
+
+  .close-menu-fast-view {
+    padding: 10px;
+  }
+
+  .fast-view-product-img-container .product-pic {
+    width: 100%;
+    max-width: 229px;
+  }
+
   .swiper {
     height: var(--section-height-s);
+  }
+
+  .fast-view-title-code {
+    width: 100%;
   }
 
   .fast-view-container {
@@ -2205,7 +2755,7 @@ footer .main {
 
   /* Swiper */
 
-  .product-text {
+  .product-title {
     padding: 0 var(--padding-5);
   }
 

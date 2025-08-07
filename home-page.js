@@ -1,3 +1,5 @@
+"use strict";
+
 document.querySelectorAll(".swiper").forEach((swiperEl) => {
   const slides = swiperEl.querySelectorAll(".swiper-slide").length;
   const enableLoop = slides >= 6;
@@ -174,45 +176,6 @@ window.addEventListener("load", () => {
   }, 1100);
 });
 
-// pdoduct function
-
-// Dohvaćamo sve elemente s klasom `add-button`, `minus-button`, i `added-quantity`
-let addButtons = document.querySelectorAll(".add-button");
-let minusButtons = document.querySelectorAll(".minus-button");
-let quantityInputs = document.querySelectorAll(".added-quantity");
-
-// Funkcija za promjenu količine pri kliku na gumb za dodavanje
-addButtons.forEach(function (addButton) {
-  addButton.addEventListener("click", function () {
-    let parent = this.parentElement;
-    let input = parent.querySelector(".added-quantity");
-    changeQuantity(input, 1);
-  });
-});
-
-// Funkcija za promjenu količine pri kliku na gumb za oduzimanje
-minusButtons.forEach(function (minusButton) {
-  minusButton.addEventListener("click", function () {
-    let parent = this.parentElement;
-    let input = parent.querySelector(".added-quantity");
-    changeQuantity(input, -1);
-  });
-});
-
-// Funkcija za promjenu količine pri ručnom unosu
-quantityInputs.forEach(function (input) {
-  input.addEventListener("change", function () {
-    let currentValue = parseInt(this.value);
-    if (isNaN(currentValue) || currentValue < 1) {
-      this.value = 1; // Postavljamo minimalnu vrijednost na 1 ako je unos neispravan
-    }
-  });
-  input.addEventListener("blur", function () {
-    // Nakon što korisnik završi s unosom, ažuriramo vrijednost
-    changeQuantity(this, 0);
-  });
-});
-
 // Funkcija za promjenu količine
 function changeQuantity(input, delta) {
   let currentValue = parseInt(input.value);
@@ -221,10 +184,160 @@ function changeQuantity(input, delta) {
   }
   let newValue = currentValue + delta;
   if (newValue < 1) {
-    newValue = 1; // Postavljamo minimalnu vrijednost na 1
+    newValue = 1;
   }
   input.value = newValue;
 }
+
+// Funkcija za dodavanje event listenera za količinu
+function addQuantityListeners(container) {
+  const addButtons = container.querySelectorAll(".add-button");
+  const minusButtons = container.querySelectorAll(".minus-button");
+  const quantityInputs = container.querySelectorAll(".added-quantity");
+
+  // Funkcija za promjenu količine pri kliku na gumb za dodavanje
+  addButtons.forEach(function (addButton) {
+    addButton.addEventListener("click", function () {
+      let parent = this.parentElement;
+      let input = parent.querySelector(".added-quantity");
+      changeQuantity(input, 1);
+    });
+  });
+
+  // Funkcija za promjenu količine pri kliku na gumb za oduzimanje
+  minusButtons.forEach(function (minusButton) {
+    minusButton.addEventListener("click", function () {
+      let parent = this.parentElement;
+      let input = parent.querySelector(".added-quantity");
+      changeQuantity(input, -1);
+    });
+  });
+
+  // Funkcija za promjenu količine pri ručnom unosu
+  quantityInputs.forEach(function (input) {
+    input.addEventListener("change", function () {
+      let currentValue = parseInt(this.value);
+      if (isNaN(currentValue) || currentValue < 1) {
+        this.value = 1; // Postavljamo minimalnu vrijednost na 1 ako je unos neispravan
+      }
+    });
+    input.addEventListener("blur", function () {
+      // Nakon što korisnik završi s unosom, ažuriramo vrijednost
+      changeQuantity(this, 0);
+    });
+  });
+}
+
+// Inicijalizacija event listenera za početnu stranicu
+addQuantityListeners(document);
+
+// Product modal functionality
+const productContainers = document.querySelectorAll(".product-container");
+
+productContainers.forEach((productContainer, i) => {
+  productContainer.addEventListener("click", function (e) {
+    let target = e.target.closest(".fast-view-container");
+    if (target === null) return;
+    const mainContainer = document.querySelector(".main");
+    let productTitle = this.querySelector(".product-title");
+
+    let productItems = {
+      productImg: this.querySelector(".product-pic"),
+      productTitle: productTitle,
+      productCode: this.querySelector(".product-code"),
+      smallProductTitle: productTitle.textContent.split("-")[0].trim(),
+      selectContainer: this.querySelector(".select-container"),
+      bradnImg: this.querySelector(".brend-img"),
+      descriptionList: this.querySelector(".description-list"),
+      moreInfoBtn: this.querySelector(".more-info"),
+      iconsContainer: this.querySelector(".icons-container"),
+      formContainer: this.querySelector(".add-to-cart-form"),
+    };
+
+    let modalOwerlay = `
+    <div class="modal-container">
+      <div class="modal-owerlay">
+      <i class="fa-solid fa-xmark close-menu close-menu-fast-view"></i>
+        <div class="fast-view-product-img-container">
+        ${productItems.productImg.outerHTML}
+        </div>
+        <div class="fast-view-product-description-continer">
+         
+          <div class="fast-view-title-brend-contaner">
+            <div class="fast-view-title-code">
+              ${productItems.productTitle.outerHTML}
+                ${productItems.productCode.outerHTML}
+            </div>
+            ${productItems.bradnImg.outerHTML}
+          </div>
+          <div class="fast-view-description">
+            <h3>${productItems.smallProductTitle}</h3>
+            ${productItems.descriptionList.outerHTML}
+          </div>
+          <div class="fast-view-cart">
+            ${productItems.formContainer.outerHTML}
+          </div>
+          <div class="more-info-container">
+          ${productItems.moreInfoBtn.outerHTML}
+          </div>
+          ${productItems.iconsContainer.outerHTML}
+        </div>
+      </div>
+    </div>
+    `;
+
+    mainContainer.insertAdjacentHTML("afterbegin", modalOwerlay);
+    let modal = document.querySelector(".modal-container");
+    modal.classList.add("show-modal");
+
+    // Traži elemente u modal-u
+    const titleContainer = modal.querySelector(
+      ".fast-view-title-brend-contaner"
+    );
+    const imgContainer = modal.querySelector(
+      ".fast-view-product-img-container"
+    );
+
+    // Dodaj event listenere za dugmad u modalu
+    addQuantityListeners(modal);
+
+    let closeModal = document.querySelector(".close-menu-fast-view");
+
+    // Zatvaranje klikom na X dugme
+    closeModal.addEventListener("click", function (e) {
+      modal.classList.remove("show-modal");
+      setTimeout(() => {
+        if (modal.parentNode) {
+          modal.parentNode.removeChild(modal);
+        }
+      }, 300);
+    });
+
+    // Zatvaranje klikom van modala
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        modal.classList.remove("show-modal");
+        setTimeout(() => {
+          if (modal.parentNode) {
+            modal.parentNode.removeChild(modal);
+          }
+        }, 300);
+      }
+    });
+
+    let width = window.innerWidth;
+
+    console.log(titleContainer);
+
+    if (width < 1024) {
+      // Prvo ukloni titleContainer iz trenutne pozicije
+
+      // Zatim ga dodaj u imgContainer
+      imgContainer.appendChild(titleContainer);
+    }
+    console.log(width);
+  });
+});
 
 // Main function
 const openMenuBtn = document.querySelector(".open-menu");
