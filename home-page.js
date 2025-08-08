@@ -327,15 +327,9 @@ productContainers.forEach((productContainer, i) => {
 
     let width = window.innerWidth;
 
-    console.log(titleContainer);
-
-    if (width < 1024) {
-      // Prvo ukloni titleContainer iz trenutne pozicije
-
-      // Zatim ga dodaj u imgContainer
+    if (width <= 1024) {
       imgContainer.appendChild(titleContainer);
     }
-    console.log(width);
   });
 });
 
