@@ -2601,6 +2601,10 @@ footer .main {
     font-size: var(--h2-font-size-l);
   }
 
+  .description-item:last-child {
+    padding-bottom: var(--padding-10);
+  }
+
   .swiper {
     height: var(--section-height-s);
   }
@@ -2807,6 +2811,11 @@ footer .main {
     font-size: var(--p-font-size-l);
   }
 
+  .more-info-container,
+  .fast-view-cart {
+    min-height: unset;
+  }
+
   .description-list {
     text-align: start;
     margin-bottom: 10px !important;
@@ -2842,7 +2851,15 @@ footer .main {
   .fast-view-description {
     text-align: center;
     margin-top: 0px;
+    overflow-y: unset;
+    flex: unset;
+    height: fit-content;
   }
+
+  .icons-container {
+    padding: var(--padding-10);
+  }
+
   .fast-view-product-description-continer
     .add-to-cart-form
     .add-to-cart-container
