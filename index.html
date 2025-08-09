@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetWebShop - Pet Shop - Prvi izbor Vašeg ljubimca</title>
     <!-- Meta Tags -->
-    <meta name="author" content="Stevan Gavrilovic" />
+    <!-- <meta name="author" content="Stevan Gavrilovic" />
     <meta http-equiv="Cache-Control" content="max-age=31536000" />
-    <meta name="revisit-after" content="30 days" />
+    <meta name="revisit-after" content="30 days" /> -->
 
     <!-- Meta Tags -->
 
@@ -40,6 +40,158 @@
   </head>
   <body>
     <header>
+      <div class="cookies-modal">
+        <div class="cookies-owerlay">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Kontrolišite vašu privatnost</h3>
+              <p>
+                Kada posetite petwebshop.com, sajt može da skladišti ili
+                preuzima informacije u vašem pretraživaču, uglavnom u obliku
+                „kolačića". Ove informacije, mogu biti o vama, vašim
+                preferencama ili vašem internet uređaju (računaru, tabletu ili
+                mobilnom uređaju), i koriste da bi veb lokacija funkcionisala
+                onako kako očekujete.
+              </p>
+            </div>
+
+            <div class="modal-actions">
+              <div class="modal-action-more-info">
+                <a href="#" target="_blank"> Politika privatnosti </a>
+                <a href="" class="more-info-btn">Više informacija</a>
+              </div>
+
+              <div class="modal-buttons">
+                <button class="accept-all">Prihvatam sve</button>
+                <button class="reject-all">Ne prihvatam</button>
+              </div>
+            </div>
+
+            <div class="modal-details">
+              <div class="cookie-content">
+                <nav class="cookie-nav"></nav>
+
+                <div class="cookie-details" id="preferences">
+                  <h3>Karakteristike</h3>
+                  <div class="cookie-description">
+                    <p>
+                      Preferencijalni kolačići omogućavaju veb lokaciji da
+                      zapamti informacije koje menjaju način na koji se veb
+                      lokacija ponaša ili izgleda, kao što je vaš željeni jezik
+                      ili region u kojem se nalazite.
+                    </p>
+                    <table class="cookie-table">
+                      <thead>
+                        <tr>
+                          <th>Naziv</th>
+                          <th>Dobavljač</th>
+                          <th>Namena</th>
+                          <th>Trajanje</th>
+                          <th>Dozvoli <small>(Selektuj sve)</small></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Currency Selection</td>
+                          <td>PrestaShop</td>
+                          <td>
+                            Cookie which makes possible to choose the currency
+                            you would like. If disabled the store default
+                            currency will be shown.
+                          </td>
+                          <td>30 days</td>
+                          <td>
+                            <input type="checkbox" id="currency-selector" />
+                            <label for="currency-selector">Dozvoli</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Language Selector</td>
+                          <td>PrestaShop</td>
+                          <td>
+                            Cookie we use to offer you the possibility to switch
+                            the language of our contents. If cookie is disabled
+                            you'll see the site in the original language.
+                          </td>
+                          <td>30 days</td>
+                          <td>
+                            <input type="checkbox" id="language-selector" />
+                            <label for="language-selector">Dozvoli</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <ul class="cookie-list">
+                      <li class="cookie-list-item">
+                        <div class="cookie-item-header">
+                          <div class="cookie-item-info">
+                            <div class="cookie-item-name">
+                              <span> <strong>Naziv:</strong> </span> Currency
+                              Selection
+                            </div>
+                            <div class="cookie-item-provider">
+                              <strong>Dobavljač:</strong> PrestaShop
+                            </div>
+                          </div>
+                          <div class="input-check-modal">
+                            <input type="checkbox" id="currency-selector" />
+                            <label for="currency-selector">Dozvoli</label>
+                          </div>
+                        </div>
+                        <div class="cookie-item-purpose">
+                          <strong>Namena:</strong> Cookie which makes possible
+                          to choose the currency you would like. If disabled the
+                          store default currency will be shown.
+                        </div>
+                        <div class="cookie-item-duration">
+                          <strong>Trajanje:</strong> 30 dana
+                        </div>
+                      </li>
+
+                      <li class="cookie-list-item">
+                        <div class="cookie-item-header">
+                          <div class="cookie-item-info">
+                            <div class="cookie-item-name">
+                              <span> <strong>Naziv:</strong> </span> Language
+                              Selector
+                            </div>
+                            <div class="cookie-item-provider">
+                              <strong>Dobavljač:</strong> PrestaShop
+                            </div>
+                          </div>
+                          <div class="input-check-modal">
+                            <input type="checkbox" id="language-selector" />
+                            <label for="language-selector">Dozvoli</label>
+                          </div>
+                        </div>
+                        <div class="cookie-item-purpose">
+                          <strong>Namena:</strong> Cookie we use to offer you
+                          the possibility to switch the language of our
+                          contents. If cookie is disabled you'll see the site in
+                          the original language.
+                        </div>
+                        <div class="cookie-item-duration">
+                          <strong>Trajanje:</strong> 30 dana
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <label>
+                  <span class="selected-count">0</span>
+                  /
+                  <span class="available-count">2</span>
+                  Aktivne
+                </label>
+                <button class="save-btn">Sačuvaj</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <i class="fa-solid fa-caret-up return-btn"></i>
       <div class="header-main-container">
         <div class="main-container">

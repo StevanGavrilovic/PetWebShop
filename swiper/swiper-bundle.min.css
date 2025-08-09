@@ -610,9 +610,7 @@ button.swiper-pagination-bullet {
 .swiper-fade .swiper-slide-active .swiper-slide-active {
   pointer-events: auto;
 }
-.swiper.swiper-cube {
-  overflow: visible;
-}
+
 .swiper-cube .swiper-slide {
   pointer-events: none;
   -webkit-backface-visibility: hidden;
@@ -670,9 +668,7 @@ button.swiper-pagination-bullet {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-.swiper.swiper-flip {
-  overflow: visible;
-}
+
 .swiper-flip .swiper-slide {
   pointer-events: none;
   -webkit-backface-visibility: hidden;
@@ -700,12 +696,16 @@ button.swiper-pagination-bullet {
   overflow: hidden;
   transition-property: transform, opacity, height;
 }
-.swiper.swiper-cards {
-  overflow: visible;
-}
+
 .swiper-cards .swiper-slide {
   transform-origin: center bottom;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: hidden;
+}
+
+.swiper.swiper-cube,
+.swiper.swiper-flip,
+.swiper.swiper-cards {
+  overflow: hidden; /* Umesto visible */
 }
