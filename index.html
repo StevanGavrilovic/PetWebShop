@@ -15,7 +15,6 @@
 
     <!-- Meta Tags -->
 
-    <link rel="stylesheet" href="font/all.css" />
     <!-- prettier-ignore -->
     <link rel="preload" href="font/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <!-- prettier-ignore -->
@@ -33,13 +32,35 @@
     <!-- prettier-ignore -->
     <link rel="preload" href="font/quicksand/Quicksand-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css-js/home-page.css" />
+    <link rel="stylesheet" href="css-js/mainCss.css" />
+    <link
+      rel="stylesheet"
+      href="css-js/home-page.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="css-js/swiper-bundle.min.css"
+      media="print"
+      onload="this.media='all'"
+    />
+
     <script defer type="module" src="css-js/home-page.js"></script>
 
-    <link rel="stylesheet" href="css-js/swiper-bundle.min.css" />
-    <script src="css-js/swiper-bundle.min.js"></script>
+    <script>
+      // Učitaj Swiper tek kad je potreban
+      const loadSwiper = () => {
+        const script = document.createElement("script");
+        script.src = "css-js/swiper-bundle.min.js";
+        document.head.appendChild(script);
+      };
 
-    <link rel="icon" href="img/home-page/favicon.svg" type="image/png" />
+      // Pokreni kad je DOM spreman ili na scroll
+      document.addEventListener("DOMContentLoaded", loadSwiper);
+    </script>
+
+    <link rel="icon" href="img/home-page/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <header>

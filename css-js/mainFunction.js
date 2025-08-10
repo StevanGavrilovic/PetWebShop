@@ -1,19 +1,6 @@
 "use strict";
 
 export function mainFunction() {
-  let mainCssElement = {
-    rel: "stylesheet",
-    href: "css-js/mainCss.css",
-  };
-
-  const linkElement = document.createElement("link");
-
-  Object.keys(mainCssElement).forEach((key) => {
-    linkElement.setAttribute(key, mainCssElement[key]);
-  });
-
-  document.head.appendChild(linkElement);
-
   const bodyElement = document.querySelector("body");
   const openMenuBtn = document.querySelector(".open-menu");
   const closeMenuBtn = document.querySelector(".close-menu");
