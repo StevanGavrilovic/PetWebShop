@@ -25,9 +25,7 @@ export function mainFunction() {
 
   // Dobijamo sve checkboxove iz tabele i liste
   const getAllCheckboxes = () => {
-    return document.querySelectorAll(
-      '.cookie-table input[type="checkbox"], .cookie-list input[type="checkbox"]'
-    );
+    return document.querySelectorAll(".cookie-checkbox");
   };
 
   // Inicijalizacija preferenci
@@ -99,14 +97,21 @@ export function mainFunction() {
 
   // Funkcija za sinhronizaciju checkboxova sa istim ID-jem
   function synchronizeCheckboxes(changedCheckbox) {
-    const checkboxId = changedCheckbox.id;
-    const allCheckboxesWithSameId = document.querySelectorAll(`#${checkboxId}`);
+    const classes = changedCheckbox.classList;
+    const cookieClass = Array.from(classes).find((cls) =>
+      cls.includes("-selector")
+    );
 
-    allCheckboxesWithSameId.forEach((checkbox) => {
-      if (checkbox !== changedCheckbox) {
-        checkbox.checked = changedCheckbox.checked;
-      }
-    });
+    if (cookieClass) {
+      const allCheckboxesWithSameClass = document.querySelectorAll(
+        `.${cookieClass}`
+      );
+      allCheckboxesWithSameClass.forEach((checkbox) => {
+        if (checkbox !== changedCheckbox) {
+          checkbox.checked = changedCheckbox.checked;
+        }
+      });
+    }
   }
 
   // Dugme "Više informacija"
@@ -307,38 +312,6 @@ export function mainFunction() {
       bodyElement.style.overflow = "auto";
     }
   }
-
-  // Funkcija za restart (opciono - za debugging)
-  function resetCookiePreferences() {
-    if (isLocalStorageAvailable()) {
-      localStorage.removeItem("cookiePreferences");
-      localStorage.removeItem("cookiesAccepted");
-    }
-
-    // Obriši sve relevantne kolačiće
-    document.cookie =
-      "currency_selection=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    document.cookie =
-      "language_selection=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-
-    // Resetuj preferences objekat
-    cookiePreferences = {
-      currency: false,
-      language: false,
-    };
-
-    // Resetuj sve checkboxove
-    setAllCheckboxes(false);
-    updateSelectedCount();
-
-    console.log("Cookie preferences resetovane");
-  }
-  // Inicijalizacija brojača kada se učita stranica
-  document.addEventListener("DOMContentLoaded", () => {
-    if (checkRequiredElements()) {
-      updateSelectedCount();
-    }
-  });
 
   // Kreiranje placeholder elementa da sprečimo "skok" sadržaja
   let placeholder = document.createElement("div");
