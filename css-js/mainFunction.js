@@ -1,6 +1,16 @@
 "use strict";
 
 export function mainFunction() {
+  window.addEventListener("load", function () {
+    const loader = document.querySelector(".page-loader");
+    const body = document.body;
+
+    setTimeout(() => {
+      loader.classList.add("hidden");
+      body.classList.remove("loading");
+    }, 300); // Kratka pauza za bolji UX
+  });
+
   const bodyElement = document.querySelector("body");
   const openMenuBtn = document.querySelector(".open-menu");
   const closeMenuBtn = document.querySelector(".close-menu");

@@ -14,232 +14,227 @@
     <meta name="revisit-after" content="30 days" />
 
     <!-- Meta Tags -->
-    <link
-      rel="preload"
-      href="font/all.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <!-- prettier-ignore -->
-    <link rel="preload" href="font/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <!-- prettier-ignore -->
-    <link rel="preload" href="font/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <!-- prettier-ignore -->
-    <link rel="preload" href="font/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <!-- prettier-ignore -->
-    <link rel="preload" href="font/quicksand/Quicksand-Light.woff2" as="font" type="font/woff2" crossorigin>
     <!-- prettier-ignore -->
     <link rel="preload" href="font/quicksand/Quicksand-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <!-- prettier-ignore -->
     <link rel="preload" href="font/quicksand/Quicksand-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <!-- prettier-ignore -->
-    <link rel="preload" href="font/quicksand/Quicksand-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="font/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- FontAwesome CSS asinhrono -->
     <!-- prettier-ignore -->
-    <link rel="preload" href="font/quicksand/Quicksand-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="font/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- prettier-ignore -->
+    <noscript><link rel="stylesheet" href="font/all.css"></noscript>
 
+    <!-- Glavno CSS ostaje sinhrono jer je kritično -->
     <link rel="stylesheet" href="css-js/mainCss.css" />
-    <link
-      rel="stylesheet"
-      href="css-js/home-page.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <link
-      rel="stylesheet"
-      href="css-js/swiper-bundle.min.css"
-      media="print"
-      onload="this.media='all'"
-    />
 
-    <script defer type="module" src="css-js/home-page.js"></script>
+    <!-- Ostalo CSS asinhrono -->
+    <!-- prettier-ignore -->
+    <link rel="stylesheet" href="css-js/home-page.css" media="print" onload="this.media='all'">
+    <!-- prettier-ignore -->
+    <noscript><link rel="stylesheet" href="css-js/home-page.css"></noscript>
 
+    <!-- Preload za brže učitavanje -->
+    <link rel="preload" href="css-js/swiper-bundle.min.js" as="script" />
+
+    <!-- Običan script bez defer -->
     <script src="css-js/swiper-bundle.min.js"></script>
+
+    <!-- Vaš modul sa defer -->
+    <script defer type="module" src="css-js/home-page.js"></script>
 
     <link rel="icon" href="img/home-page/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <header>
-      <div class="cookies-modal">
-        <div class="cookies-owerlay">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Kontrolišite vašu privatnost</h3>
-              <p>
-                Kada posetite petwebshop.com, sajt može da skladišti ili
-                preuzima informacije u vašem pretraživaču, uglavnom u obliku
-                „kolačića". Ove informacije, mogu biti o vama, vašim
-                preferencama ili vašem internet uređaju (računaru, tabletu ili
-                mobilnom uređaju), i koriste da bi veb lokacija funkcionisala
-                onako kako očekujete.
-              </p>
-            </div>
-
-            <div class="modal-actions">
-              <div class="modal-action-more-info">
-                <a href="#" target="_blank"> Politika privatnosti </a>
-                <a href="" class="more-info-btn">Više informacija</a>
+    <div class="page-loader">
+      <div class="spinner"></div>
+    </div>
+    <div class="content">
+      <header>
+        <div class="cookies-modal">
+          <div class="cookies-owerlay">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3>Kontrolišite vašu privatnost</h3>
+                <p>
+                  Kada posetite petwebshop.com, sajt može da skladišti ili
+                  preuzima informacije u vašem pretraživaču, uglavnom u obliku
+                  „kolačića". Ove informacije, mogu biti o vama, vašim
+                  preferencama ili vašem internet uređaju (računaru, tabletu ili
+                  mobilnom uređaju), i koriste da bi veb lokacija funkcionisala
+                  onako kako očekujete.
+                </p>
               </div>
 
-              <div class="modal-buttons">
-                <button class="accept-all">Prihvatam sve</button>
-                <button class="reject-all">Ne prihvatam</button>
-              </div>
-            </div>
+              <div class="modal-actions">
+                <div class="modal-action-more-info">
+                  <a href="#" target="_blank"> Politika privatnosti </a>
+                  <a href="" class="more-info-btn">Više informacija</a>
+                </div>
 
-            <div class="modal-details">
-              <div class="cookie-content">
-                <nav class="cookie-nav"></nav>
-
-                <div class="cookie-details" id="preferences">
-                  <h3>Karakteristike</h3>
-                  <div class="cookie-description">
-                    <p>
-                      Preferencijalni kolačići omogućavaju veb lokaciji da
-                      zapamti informacije koje menjaju način na koji se veb
-                      lokacija ponaša ili izgleda, kao što je vaš željeni jezik
-                      ili region u kojem se nalazite.
-                    </p>
-                    <table class="cookie-table">
-                      <thead>
-                        <tr>
-                          <th>Naziv</th>
-                          <th>Dobavljač</th>
-                          <th>Namena</th>
-                          <th>Trajanje</th>
-                          <th>Dozvoli <small>(Selektuj sve)</small></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td lang="en">Currency Selection</td>
-                          <td>PrestaShop</td>
-                          <td lang="en">
-                            Cookie which makes possible to choose the currency
-                            you would like. If disabled the store default
-                            currency will be shown.
-                          </td>
-                          <td>30 days</td>
-                          <td>
-                            <input
-                              type="checkbox"
-                              class="cookie-checkbox currency-selector"
-                              id="cur-1"
-                            />
-                            <p>Dozvoli</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td lang="en">Language Selector</td>
-                          <td>PrestaShop</td>
-                          <td lang="en">
-                            Cookie we use to offer you the possibility to switch
-                            the language of our contents. If cookie is disabled
-                            you'll see the site in the original language.
-                          </td>
-                          <td>30 days</td>
-                          <td>
-                            <input
-                              type="checkbox"
-                              class="cookie-checkbox language-selector"
-                              id="lang-1"
-                            />
-                            <p>Dozvoli</p>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <ul class="cookie-list">
-                      <li class="cookie-list-item">
-                        <div class="cookie-item-header">
-                          <div class="cookie-item-info">
-                            <div class="cookie-item-name">
-                              <p lang="en">
-                                <span> <strong>Naziv:</strong> </span> Currency
-                                Selection
-                              </p>
-                            </div>
-                            <div class="cookie-item-provider">
-                              <strong>Dobavljač:</strong> PrestaShop
-                            </div>
-                          </div>
-                          <div class="input-check-modal">
-                            <input
-                              type="checkbox"
-                              class="cookie-checkbox currency-selector"
-                              id="cur-0"
-                            />
-                            <p>Dozvoli</p>
-                          </div>
-                        </div>
-                        <div class="cookie-item-purpose">
-                          <p lang="en">
-                            <strong>Namena:</strong> Cookie which makes possible
-                            to choose the currency you would like. If disabled
-                            the store default currency will be shown.
-                          </p>
-                        </div>
-                        <div class="cookie-item-duration">
-                          <strong>Trajanje:</strong> 30 dana
-                        </div>
-                      </li>
-
-                      <li class="cookie-list-item">
-                        <div class="cookie-item-header">
-                          <div class="cookie-item-info">
-                            <div class="cookie-item-name">
-                              <p lang="en">
-                                <span> <strong>Naziv:</strong> </span> Language
-                                Selector
-                              </p>
-                            </div>
-                            <div class="cookie-item-provider">
-                              <strong>Dobavljač:</strong> PrestaShop
-                            </div>
-                          </div>
-                          <div class="input-check-modal">
-                            <input
-                              type="checkbox"
-                              class="cookie-checkbox language-selector"
-                              id="lang-0"
-                            />
-                            <p>Dozvoli</p>
-                          </div>
-                        </div>
-                        <div class="cookie-item-purpose">
-                          <p lang="en">
-                            <strong>Namena:</strong> Cookie we use to offer you
-                            the possibility to switch the language of our
-                            contents. If cookie is disabled you'll see the site
-                            in the original language.
-                          </p>
-                        </div>
-                        <div class="cookie-item-duration">
-                          <strong>Trajanje:</strong> 30 dana
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                <div class="modal-buttons">
+                  <button class="accept-all">Prihvatam sve</button>
+                  <button class="reject-all">Ne prihvatam</button>
                 </div>
               </div>
-              <div class="modal-footer">
-                <p>
-                  <span class="selected-count">0</span>
-                  /
-                  <span class="available-count">2</span>
-                  Aktivne
-                </p>
-                <button class="save-btn">Sačuvaj</button>
+
+              <div class="modal-details">
+                <div class="cookie-content">
+                  <nav class="cookie-nav"></nav>
+
+                  <div class="cookie-details" id="preferences">
+                    <h3>Karakteristike</h3>
+                    <div class="cookie-description">
+                      <p>
+                        Preferencijalni kolačići omogućavaju veb lokaciji da
+                        zapamti informacije koje menjaju način na koji se veb
+                        lokacija ponaša ili izgleda, kao što je vaš željeni
+                        jezik ili region u kojem se nalazite.
+                      </p>
+                      <table class="cookie-table">
+                        <thead>
+                          <tr>
+                            <th>Naziv</th>
+                            <th>Dobavljač</th>
+                            <th>Namena</th>
+                            <th>Trajanje</th>
+                            <th>Dozvoli <small>(Selektuj sve)</small></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td lang="en">Currency Selection</td>
+                            <td>PrestaShop</td>
+                            <td lang="en">
+                              Cookie which makes possible to choose the currency
+                              you would like. If disabled the store default
+                              currency will be shown.
+                            </td>
+                            <td>30 days</td>
+                            <td>
+                              <input
+                                type="checkbox"
+                                class="cookie-checkbox currency-selector"
+                                id="cur-1"
+                              />
+                              <p>Dozvoli</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td lang="en">Language Selector</td>
+                            <td>PrestaShop</td>
+                            <td lang="en">
+                              Cookie we use to offer you the possibility to
+                              switch the language of our contents. If cookie is
+                              disabled you'll see the site in the original
+                              language.
+                            </td>
+                            <td>30 days</td>
+                            <td>
+                              <input
+                                type="checkbox"
+                                class="cookie-checkbox language-selector"
+                                id="lang-1"
+                              />
+                              <p>Dozvoli</p>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <ul class="cookie-list">
+                        <li class="cookie-list-item">
+                          <div class="cookie-item-header">
+                            <div class="cookie-item-info">
+                              <div class="cookie-item-name">
+                                <p lang="en">
+                                  <span> <strong>Naziv:</strong> </span>
+                                  Currency Selection
+                                </p>
+                              </div>
+                              <div class="cookie-item-provider">
+                                <strong>Dobavljač:</strong> PrestaShop
+                              </div>
+                            </div>
+                            <div class="input-check-modal">
+                              <input
+                                type="checkbox"
+                                class="cookie-checkbox currency-selector"
+                                id="cur-0"
+                              />
+                              <p>Dozvoli</p>
+                            </div>
+                          </div>
+                          <div class="cookie-item-purpose">
+                            <p lang="en">
+                              <strong>Namena:</strong> Cookie which makes
+                              possible to choose the currency you would like. If
+                              disabled the store default currency will be shown.
+                            </p>
+                          </div>
+                          <div class="cookie-item-duration">
+                            <strong>Trajanje:</strong> 30 dana
+                          </div>
+                        </li>
+
+                        <li class="cookie-list-item">
+                          <div class="cookie-item-header">
+                            <div class="cookie-item-info">
+                              <div class="cookie-item-name">
+                                <p lang="en">
+                                  <span> <strong>Naziv:</strong> </span>
+                                  Language Selector
+                                </p>
+                              </div>
+                              <div class="cookie-item-provider">
+                                <strong>Dobavljač:</strong> PrestaShop
+                              </div>
+                            </div>
+                            <div class="input-check-modal">
+                              <input
+                                type="checkbox"
+                                class="cookie-checkbox language-selector"
+                                id="lang-0"
+                              />
+                              <p>Dozvoli</p>
+                            </div>
+                          </div>
+                          <div class="cookie-item-purpose">
+                            <p lang="en">
+                              <strong>Namena:</strong> Cookie we use to offer
+                              you the possibility to switch the language of our
+                              contents. If cookie is disabled you'll see the
+                              site in the original language.
+                            </p>
+                          </div>
+                          <div class="cookie-item-duration">
+                            <strong>Trajanje:</strong> 30 dana
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <p>
+                    <span class="selected-count">0</span>
+                    /
+                    <span class="available-count">2</span>
+                    Aktivne
+                  </p>
+                  <button class="save-btn">Sačuvaj</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <i class="fa-solid fa-caret-up return-btn"></i>
-      <div class="header-main-container">
-        <div class="main-container">
-          <!-- prettier-ignore -->
-          <ul class="header-promotions mobile-deactive">
+        <i class="fa-solid fa-caret-up return-btn"></i>
+        <div class="header-main-container">
+          <div class="main-container">
+            <!-- prettier-ignore -->
+            <ul class="header-promotions mobile-deactive">
           <li><img src="img/home-page/besplatna dostava.webp" alt="besplatna dostava" class="promotion-img" loading="lazy">
             <div class="header-promotions-container"><p>BESPLATNA DOSTAVA <br> za sve porudžbine preko 6000 RSD. Do 20 kg težine pošiljke.</p></div>
         </li>
@@ -253,16 +248,16 @@
             <div class="header-promotions-container"> <p>PRIJAVITE SE I POBEDITE <br> i ostvarite značajne uštede pri kupovini proizvoda na AUKCIJI. </p> <a class="promotion-link" href="">Prijavi se <i class="fa-solid fa-gavel"></i></a></div>
         </li>
         </ul>
-          <div class="header-input">
-            <img
-              class="logo-header-img"
-              src="img/home-page/logo.png"
-              alt="Logo"
-              loading="lazy"
-            />
-            <div class="input-box">
-              <!-- prettier-ignore -->
-              <form  action="">
+            <div class="header-input">
+              <img
+                class="logo-header-img"
+                src="img/home-page/logo.png"
+                alt="Logo"
+                loading="lazy"
+              />
+              <div class="input-box">
+                <!-- prettier-ignore -->
+                <form  action="">
               <input
               name="product-name"
                 class="search-input"
@@ -274,9 +269,9 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </form>
-            </div>
-            <!-- prettier-ignore -->
-            <div class="cart-box">
+              </div>
+              <!-- prettier-ignore -->
+              <div class="cart-box">
              <a class="header-user-links mobile-deactive" href="viber://chat?number=38163287684">
               <img class="sofija-viber-img" src="img/home-page/sofija_viber.webp" alt="Sofija viber">
               <p class="cart-text">Pitajte Sofiju</p>
@@ -292,27 +287,27 @@
              <i class="fa-solid fa-bars header-user-links mobile-tablet-main-link open-menu"></i>
              
             </div>
-          </div>
-          <div class="header-text-container">
-            <h1>Petwebshop - Pet shop hrana i oprema za kućne ljubimce</h1>
-          </div>
-          <div class="fixed-nav">
-            <ul class="mobile-tablet-main-link ul-icons-container">
-              <li class="mobile-tablet-main-link fixed-icon">
-                <i class="fa-solid fa-arrow-left"></i>
-              </li>
-              <li class="mobile-tablet-main-link fixed-icon">
-                <i class="fa-solid fa-xmark close-menu"></i>
-              </li>
-            </ul>
-            <nav class="navigation">
-              <ul class="navigation-list">
-                <li class="bars">
-                  <i class="fa-solid fa-bars"></i> <span>Kategorije</span>
+            </div>
+            <div class="header-text-container">
+              <h1>Petwebshop - Pet shop hrana i oprema za kućne ljubimce</h1>
+            </div>
+            <div class="fixed-nav">
+              <ul class="mobile-tablet-main-link ul-icons-container">
+                <li class="mobile-tablet-main-link fixed-icon">
+                  <i class="fa-solid fa-arrow-left"></i>
                 </li>
+                <li class="mobile-tablet-main-link fixed-icon">
+                  <i class="fa-solid fa-xmark close-menu"></i>
+                </li>
+              </ul>
+              <nav class="navigation">
+                <ul class="navigation-list">
+                  <li class="bars">
+                    <i class="fa-solid fa-bars"></i> <span>Kategorije</span>
+                  </li>
 
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="test">
                 <img src="img/home-page/MILISAV.svg" loading="lazy" alt="Milisav" />
                 <span>Psi</span>
@@ -445,8 +440,8 @@
                 </ul>
                 </div>
             </li>
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/SOFIJA.svg" loading="lazy" alt="Sofija" />
                 <span>Mačke</span>
@@ -567,8 +562,8 @@
                 </ul>
                 </div>
             </li>
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/petko.svg" loading="lazy" alt="Petko" />
                 <span>Male životinje</span>
@@ -701,8 +696,8 @@
                 </ul>
                 </div>
             </li>
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/KICA.svg" loading="lazy" alt="Kica" />
                 <span>Ptice</span>
@@ -817,8 +812,8 @@
                 </ul>
                 </div>
             </li>
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/DOBRILA.svg" loading="lazy" alt="Dobrila" />
                 <span>Konji</span>
@@ -843,8 +838,8 @@
                 </ul>
                 </div>
             </li>
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/ZAKLINA.svg" loading="lazy" alt="Zaklina" />
                 <span>Akvaristika</span>
@@ -863,8 +858,8 @@
                 </ul>
                 </div>
             </li>
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link">
                 <a class="navigation-main-link-item" href="">
                 <img src="img/home-page/TRTA.svg" loading="lazy" alt="Trta" />
                 <span>Teraristika</span>
@@ -902,8 +897,8 @@
                 </div>
             </li>
 
-                <!-- prettier-ignore -->
-                <li class="navigation-main-link account-link">
+                  <!-- prettier-ignore -->
+                  <li class="navigation-main-link account-link">
                 <a class="navigation-main-link-item" href="">
               
                 <i class="fa-regular fa-circle-user"></i>
@@ -935,44 +930,44 @@
                 </ul>
                 </div>
             </li>
-                <li class="navigation-main-link mobile-tablet-main-link">
-                  <a
-                    class="navigation-main-link-item"
-                    href="viber://chat?number=38163287684"
-                  >
-                    <img
-                      src="img/home-page/sofija_viber.webp"
-                      alt="Sofija viber"
-                    />
-                    <span>Pitajte Sofiju</span>
-                  </a>
-                </li>
+                  <li class="navigation-main-link mobile-tablet-main-link">
+                    <a
+                      class="navigation-main-link-item"
+                      href="viber://chat?number=38163287684"
+                    >
+                      <img
+                        src="img/home-page/sofija_viber.webp"
+                        alt="Sofija viber"
+                      />
+                      <span>Pitajte Sofiju</span>
+                    </a>
+                  </li>
 
-                <li class="navigation-main-link mobile-tablet-main-link">
-                  <a class="navigation-main-link-item" href="">
-                    <img src="img/home-page/Cile.png" alt="Cile akcije" />
-                    <span>Akcije i popusti</span>
-                  </a>
-                </li>
-                <li class="navigation-main-link mobile-tablet-main-link">
-                  <a class="navigation-main-link-item" href="">
-                    <img
-                      class="logo-header-img navigation-logo"
-                      src="img/home-page/logo.png"
-                      alt="Logo"
-                      loading="lazy"
-                    />
-                  </a>
-                </li>
-              </ul>
-            </nav>
+                  <li class="navigation-main-link mobile-tablet-main-link">
+                    <a class="navigation-main-link-item" href="">
+                      <img src="img/home-page/Cile.png" alt="Cile akcije" />
+                      <span>Akcije i popusti</span>
+                    </a>
+                  </li>
+                  <li class="navigation-main-link mobile-tablet-main-link">
+                    <a class="navigation-main-link-item" href="">
+                      <img
+                        class="logo-header-img navigation-logo"
+                        src="img/home-page/logo.png"
+                        alt="Logo"
+                        loading="lazy"
+                      />
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-    <main class="main">
-      <!-- prettier-ignore -->
-      <!-- <div class="avatar-container">
+      </header>
+      <main class="main">
+        <!-- prettier-ignore -->
+        <!-- <div class="avatar-container">
            <img class="avatar-img" src="img/home-page/MILISAV.svg" alt="Milisav" loading="lazy" />
            <img class="avatar-img" src="img/home-page/SOFIJA.svg" alt="Sofija" loading="lazy" />
            <img class="avatar-img" src="img/home-page/petko.svg" alt="Petko" loading="lazy" />
@@ -981,8 +976,8 @@
            <img class="avatar-img" src="img/home-page/ZAKLINA.svg" alt="Zaklina" loading="lazy" />       
            <img class="avatar-img" src="img/home-page/TRTA.svg" alt="Trta" loading="lazy" />
       </div> -->
-      <!-- prettier-ignore -->
-      <div class="avatar-container">
+        <!-- prettier-ignore -->
+        <div class="avatar-container">
         <a class="avatar-img-text-container" href="">Sve za Pse<img class="avatar-img" src="img/home-page/MILISAV.svg" alt="Milisav" loading="lazy" /></a>
         <a class="avatar-img-text-container" href="">Sve za MAČKE<img class="avatar-img" src="img/home-page/SOFIJA.svg" alt="Sofija" loading="lazy" /></a>
         <a class="avatar-img-text-container" href="">Sve za MALE ŽIVOTINJE<img class="avatar-img" src="img/home-page/petko.svg" alt="Petko" loading="lazy" /></a>
@@ -991,129 +986,129 @@
         <a class="avatar-img-text-container" href="">Hrana i oprema TERARISTIKA<img  class="avatar-img"  src="img/home-page/ZAKLINA.svg" alt="Zaklina" loading="lazy"/></a>
         <a class="avatar-img-text-container" href="">Hrana i kozmetika za KONJE<img  class="avatar-img"  src="img/home-page/TRTA.svg" alt="Trta" loading="lazy"/></a>
       </div>
-      <section class="section-slider">
-        <h2 class="section-title">Sve za pse!</h2>
-        <div class="slider">
-          <div class="slide">
-            <div class="section-img-container">
-              <div class="img-container">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/2-Essential-The-Beginning-Small-Breed.webp" alt="ESSENTIAL THE BEGINNING SMALL BREED - HRANA ZA ŠTENAD I JUNIORE MALIH RASA PASA - 3KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/4-Josera-Optiness.webp" alt="JOSERA OPTINESS - HRANA ZA ODRASLE PSE - 15KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/5-Advance-Granule-za-pse.webp" alt="ADVANCE DOG PUPPY SENSITIVE LOSOS & PIRINAČ - HRANA ZA ŠTENCE SVIH RASA SA OSETLJIVIM STOMAKOM - 12KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/10-Nature's-Protection-Super-Premium.webp" alt="NATURE'S PROTECTION SUPER PREMIUM - COMFORT CALM WITH POULTRY - POSLASTICA ZA PSE - 160G" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/7-Royal-Canin-Granule-za-pse.webp" alt="ROYAL CANIN YORKSHIRE TERRIER ADULT - HRANA ZA ODRASLE PSE RASE JORKŠIRSKI TERIJER, STAROSTI PREKO 10 MESECI - 500G I 1,5KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-              </div>
-              <div class="center-img-container">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/pas.png" alt="" class="section-img" fetchpriority="high">
-              </div>
-              <div class="img-container">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/11-Orijen_Six_Fish.webp" alt="ORIJEN SIX FISH - HRANA ZA PSE SVIH RASA I ŽIVOTNIH DOBI - 2KG I 11,4KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/1-Acana-Heritage-Puppy-Small-Breed.webp" alt="ACANA HERITAGE PUPPY SMALL BREED - HRANA ZA ŠTENCE MALIH RASA - 2KG I 6KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/3-Brit-Premium-by-Nature-Dog-Adult-Konzerva-govedina-sa-škembićima.webp" alt="BRIT PREMIUM BY NATURE DOG ADULT KONZERVA GOVEDINA SA ŠKEMBIĆIMA - VLAŽNA HRANA ZA ODRASLE PSE - 800G" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/8-Platinum.webp" alt="PLATINUM MENU BEEF & CHICKEN - VLAŽNA HRANA ZA PSE SVIH RASA SA GOVEDINOM I PILETINOM - 90G, 185G I 375G" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/9-Kudo-Low-Grain-Red-Meat-Mini-Adult.webp" alt="KUDO LOW GRAIN RED MEAT MINI ADULT - HRANA ZA ODRASLE PSE MALIH RASA - 3KG I 12KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-              </div>
-            </div>
-            <h2 class="section-img-title">Hrana za pse!</h2>
-            <a class="section-link" href="">Pogledaj sve proizvode</a>
-          </div>
-          <div class="slide">
-            <div class="section-img-container">
-              <div class="img-container">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/krevet.webp" alt="ROGZ ARMCOSMO MAND - KREVET ZA PSE - 5 BOJA - 135X380X520MM" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/hrana_64b6a8525ce55.webp" alt="TASTE OF THE WILD DOG - PACIFIC STREAM PUPPY (DIMLJENI LOSOS I RIBA) - HRANA ZA ŠTENCE I JUNIORE SVIH RASA - 2KG I 12,2KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/wc.webp" alt="MOKSI SUPER PET PAD CARBON - KARBONSKE PELENE ZA PSE - VIŠE VELIČINA - 10KOM" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/posuda_64b6a821511db.webp" alt="ROGZ BUBBLE BOWLZ INDIGO BONES - ČINIJA ZA PSE - 2 VELIČINE" loading="lazy" class="section-img-dog">
-              </div>
-              <div class="center-img-container">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/Psi proizvodi/pas-2.png" alt="" class="section-img" loading="lazy"/>
-              </div>
-              <div class="img-container">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/povodac_64b6a7fe922b3.webp" alt="FLEXI PUPPY S TAPE - POVODAC ZA ŠTENCE - PLAVI I ROZE" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/igracka.webp" alt="DUVO+ PUPPY TPR BONE WITH NYLON ROPE - IGRAČKA ZA ŠTENCE - 35CM" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/ogrlica_64b6a809d7f5e.webp" alt="ROGZ JELLYBEAN TURQUOSE PAW - KLASIČNA OGRLICA ZA PSE - 5 VELIČINA" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/sprej.webp" alt="DUVO+ PUPPY TRAINING SPRAY - SPREJ ZA DRESURU ŠTENACA - 125ML" loading="lazy" class="section-img-dog">
-              </div>
-            </div>
-            <h2 class="section-img-title">Start paketi za štence!</h2>
-            <a class="section-link" href="">Pogledaj sve proizvode</a>
-          </div>
-          <div class="buttons">
-            <i class="fa-solid fa-angle-left slider-left"></i>
-            <i class="fa-solid fa-angle-right slider-right"></i>
-          </div>
-        </div>
-        <div class="dots"></div>
-      </section>
-      <section class="product-section-container">
-        <h2 class="product-section-title">Popularni proizvodi</h2>
-
-        <div class="swiper">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <div class="product-container">
-                <!-- prettier-ignore -->
-                <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
-                <div class="fast-view-container">
-                  <p class="fast-view-text">Brzi prikaz</p>
-                  <i class="fa-solid fa-eye"></i>
+        <section class="section-slider">
+          <h2 class="section-title">Sve za pse!</h2>
+          <div class="slider">
+            <div class="slide">
+              <div class="section-img-container">
+                <div class="img-container">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/2-Essential-The-Beginning-Small-Breed.webp" alt="ESSENTIAL THE BEGINNING SMALL BREED - HRANA ZA ŠTENAD I JUNIORE MALIH RASA PASA - 3KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/4-Josera-Optiness.webp" alt="JOSERA OPTINESS - HRANA ZA ODRASLE PSE - 15KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/5-Advance-Granule-za-pse.webp" alt="ADVANCE DOG PUPPY SENSITIVE LOSOS & PIRINAČ - HRANA ZA ŠTENCE SVIH RASA SA OSETLJIVIM STOMAKOM - 12KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/10-Nature's-Protection-Super-Premium.webp" alt="NATURE'S PROTECTION SUPER PREMIUM - COMFORT CALM WITH POULTRY - POSLASTICA ZA PSE - 160G" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/7-Royal-Canin-Granule-za-pse.webp" alt="ROYAL CANIN YORKSHIRE TERRIER ADULT - HRANA ZA ODRASLE PSE RASE JORKŠIRSKI TERIJER, STAROSTI PREKO 10 MESECI - 500G I 1,5KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
                 </div>
-                <p class="product-title">
-                  Essential The Beginning Small Breed - hrana za štenad i
-                  juniore malih rasa pasa - 2,5kg - 1
-                </p>
-                <form class="add-to-cart-form" action="" method="post">
-                  <div class="add-to-cart-container">
-                    <div class="select-container">
-                      <select name="product-weight" id="1">
-                        <option value="10">10 kg</option>
-                        <option value="2.5">2.5 kg</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <!-- prettier-ignore -->
-                      <div class="product-inputs">
+                <div class="center-img-container">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/pas.png" alt="" class="section-img" fetchpriority="high">
+                </div>
+                <div class="img-container">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/11-Orijen_Six_Fish.webp" alt="ORIJEN SIX FISH - HRANA ZA PSE SVIH RASA I ŽIVOTNIH DOBI - 2KG I 11,4KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/1-Acana-Heritage-Puppy-Small-Breed.webp" alt="ACANA HERITAGE PUPPY SMALL BREED - HRANA ZA ŠTENCE MALIH RASA - 2KG I 6KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/3-Brit-Premium-by-Nature-Dog-Adult-Konzerva-govedina-sa-škembićima.webp" alt="BRIT PREMIUM BY NATURE DOG ADULT KONZERVA GOVEDINA SA ŠKEMBIĆIMA - VLAŽNA HRANA ZA ODRASLE PSE - 800G" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/8-Platinum.webp" alt="PLATINUM MENU BEEF & CHICKEN - VLAŽNA HRANA ZA PSE SVIH RASA SA GOVEDINOM I PILETINOM - 90G, 185G I 375G" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/9-Kudo-Low-Grain-Red-Meat-Mini-Adult.webp" alt="KUDO LOW GRAIN RED MEAT MINI ADULT - HRANA ZA ODRASLE PSE MALIH RASA - 3KG I 12KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                </div>
+              </div>
+              <h2 class="section-img-title">Hrana za pse!</h2>
+              <a class="section-link" href="">Pogledaj sve proizvode</a>
+            </div>
+            <div class="slide">
+              <div class="section-img-container">
+                <div class="img-container">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/krevet.webp" alt="ROGZ ARMCOSMO MAND - KREVET ZA PSE - 5 BOJA - 135X380X520MM" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/hrana_64b6a8525ce55.webp" alt="TASTE OF THE WILD DOG - PACIFIC STREAM PUPPY (DIMLJENI LOSOS I RIBA) - HRANA ZA ŠTENCE I JUNIORE SVIH RASA - 2KG I 12,2KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/wc.webp" alt="MOKSI SUPER PET PAD CARBON - KARBONSKE PELENE ZA PSE - VIŠE VELIČINA - 10KOM" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/posuda_64b6a821511db.webp" alt="ROGZ BUBBLE BOWLZ INDIGO BONES - ČINIJA ZA PSE - 2 VELIČINE" loading="lazy" class="section-img-dog">
+                </div>
+                <div class="center-img-container">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/Psi proizvodi/pas-2.png" alt="" class="section-img" loading="lazy"/>
+                </div>
+                <div class="img-container">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/povodac_64b6a7fe922b3.webp" alt="FLEXI PUPPY S TAPE - POVODAC ZA ŠTENCE - PLAVI I ROZE" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/igracka.webp" alt="DUVO+ PUPPY TPR BONE WITH NYLON ROPE - IGRAČKA ZA ŠTENCE - 35CM" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/ogrlica_64b6a809d7f5e.webp" alt="ROGZ JELLYBEAN TURQUOSE PAW - KLASIČNA OGRLICA ZA PSE - 5 VELIČINA" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/sprej.webp" alt="DUVO+ PUPPY TRAINING SPRAY - SPREJ ZA DRESURU ŠTENACA - 125ML" loading="lazy" class="section-img-dog">
+                </div>
+              </div>
+              <h2 class="section-img-title">Start paketi za štence!</h2>
+              <a class="section-link" href="">Pogledaj sve proizvode</a>
+            </div>
+            <div class="buttons">
+              <i class="fa-solid fa-angle-left slider-left"></i>
+              <i class="fa-solid fa-angle-right slider-right"></i>
+            </div>
+          </div>
+          <div class="dots"></div>
+        </section>
+        <section class="product-section-container">
+          <h2 class="product-section-title">Popularni proizvodi</h2>
+
+          <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <div class="product-container">
+                  <!-- prettier-ignore -->
+                  <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
+                  <div class="fast-view-container">
+                    <p class="fast-view-text">Brzi prikaz</p>
+                    <i class="fa-solid fa-eye"></i>
+                  </div>
+                  <p class="product-title">
+                    Essential The Beginning Small Breed - hrana za štenad i
+                    juniore malih rasa pasa - 2,5kg - 1
+                  </p>
+                  <form class="add-to-cart-form" action="" method="post">
+                    <div class="add-to-cart-container">
+                      <div class="select-container">
+                        <select name="product-weight" id="1">
+                          <option value="10">10 kg</option>
+                          <option value="2.5">2.5 kg</option>
+                        </select>
+                      </div>
+                      <div class="input-group">
+                        <!-- prettier-ignore -->
+                        <div class="product-inputs">
                       <input type="button" value="-" data-field="product_qty" class="minus-button add-remove-quantity">
                       <input type="text" step="1" max="" value="1" name="product_qty" class="added-quantity">
                       <input type="button" value="+" data-field="product_qty" class="add-button add-remove-quantity">
                       <input type="hidden" name="add_cart" value="" />
                     </div>
-                      <button class="dodaj-u-korpu" type="submit" name="">
-                        <i class="fa fa-shopping-cart"></i>
-                      </button>
+                        <button class="dodaj-u-korpu" type="submit" name="">
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <div class="product-info-container">
-                  <!-- prettier-ignore -->
-                  <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
-                  <p class="product-code">Sifra <span>L-1231-Ess</span></p>
-                  <!-- prettier-ignore -->
-                  <ul class="description-list">
+                  </form>
+                  <div class="product-info-container">
+                    <!-- prettier-ignore -->
+                    <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
+                    <p class="product-code">Sifra <span>L-1231-Ess</span></p>
+                    <!-- prettier-ignore -->
+                    <ul class="description-list">
                     <li class="description-item">Predviđen je za sve odrasle pse malih i patuljastih rasa;</li>
             
                     
@@ -1125,55 +1120,55 @@
                                             <li class="description-item">Ne sadrži žitarice, niti GMO sastojke i obrok prati&nbsp; BOF* princip ishrane pasa;</li>
                     <li class="description-item">Veličina i oblik granula su prilagođeni veličini vilice malih i patuljastih rasa pasa;</li>
                   </ul>
-                  <a class="more-info" href="">Detaljnije</a>
-                  <div class="icons-container">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a class="more-info" href="">Detaljnije</a>
+                    <div class="icons-container">
+                      <i class="fa-brands fa-facebook"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                      <i class="fa-brands fa-pinterest"></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-container">
-                <!-- prettier-ignore -->
-                <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
-                <div class="fast-view-container">
-                  <p class="fast-view-text">Brzi prikaz</p>
-                  <i class="fa-solid fa-eye"></i>
-                </div>
-                <p class="product-title">
-                  Essential The Beginning Small Breed - hrana za štenad i
-                  juniore malih rasa pasa - 2,5kg - 1
-                </p>
-                <form class="add-to-cart-form" action="" method="post">
-                  <div class="add-to-cart-container">
-                    <div class="select-container">
-                      <select name="product-weight" id="2">
-                        <option value="10">10 kg</option>
-                        <option value="2.5">2.5 kg</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <!-- prettier-ignore -->
-                      <div class="product-inputs">
+              <div class="swiper-slide">
+                <div class="product-container">
+                  <!-- prettier-ignore -->
+                  <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
+                  <div class="fast-view-container">
+                    <p class="fast-view-text">Brzi prikaz</p>
+                    <i class="fa-solid fa-eye"></i>
+                  </div>
+                  <p class="product-title">
+                    Essential The Beginning Small Breed - hrana za štenad i
+                    juniore malih rasa pasa - 2,5kg - 1
+                  </p>
+                  <form class="add-to-cart-form" action="" method="post">
+                    <div class="add-to-cart-container">
+                      <div class="select-container">
+                        <select name="product-weight" id="2">
+                          <option value="10">10 kg</option>
+                          <option value="2.5">2.5 kg</option>
+                        </select>
+                      </div>
+                      <div class="input-group">
+                        <!-- prettier-ignore -->
+                        <div class="product-inputs">
                       <input type="button" value="-" data-field="product_qty" class="minus-button add-remove-quantity">
                       <input type="text" step="1" max="" value="1" name="product_qty" class="added-quantity">
                       <input type="button" value="+" data-field="product_qty" class="add-button add-remove-quantity">
                       <input type="hidden" name="add_cart" value="" />
                     </div>
-                      <button class="dodaj-u-korpu" type="submit" name="">
-                        <i class="fa fa-shopping-cart"></i>
-                      </button>
+                        <button class="dodaj-u-korpu" type="submit" name="">
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <div class="product-info-container">
-                  <!-- prettier-ignore -->
-                  <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
-                  <p class="product-code">Sifra <span>L-1231-Ess</span></p>
-                  <!-- prettier-ignore -->
-                  <ul class="description-list">
+                  </form>
+                  <div class="product-info-container">
+                    <!-- prettier-ignore -->
+                    <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
+                    <p class="product-code">Sifra <span>L-1231-Ess</span></p>
+                    <!-- prettier-ignore -->
+                    <ul class="description-list">
                     <li class="description-item">Predviđen je za sve odrasle pse malih i patuljastih rasa;</li>
             
                     
@@ -1181,55 +1176,55 @@
                     <li class="description-item">Ne sadrži žitarice, niti GMO sastojke i obrok prati&nbsp; BOF* princip ishrane pasa;</li>
                     <li class="description-item">Veličina i oblik granula su prilagođeni veličini vilice malih i patuljastih rasa pasa;</li>
                   </ul>
-                  <a class="more-info" href="">Detaljnije</a>
-                  <div class="icons-container">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a class="more-info" href="">Detaljnije</a>
+                    <div class="icons-container">
+                      <i class="fa-brands fa-facebook"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                      <i class="fa-brands fa-pinterest"></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-container">
-                <!-- prettier-ignore -->
-                <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
-                <div class="fast-view-container">
-                  <p class="fast-view-text">Brzi prikaz</p>
-                  <i class="fa-solid fa-eye"></i>
-                </div>
-                <p class="product-title">
-                  Essential The Beginning Small Breed - hrana za štenad i
-                  juniore malih rasa pasa - 2,5kg - 1
-                </p>
-                <form class="add-to-cart-form" action="" method="post">
-                  <div class="add-to-cart-container">
-                    <div class="select-container">
-                      <select name="product-weight" id="3">
-                        <option value="10">10 kg</option>
-                        <option value="2.5">2.5 kg</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <!-- prettier-ignore -->
-                      <div class="product-inputs">
+              <div class="swiper-slide">
+                <div class="product-container">
+                  <!-- prettier-ignore -->
+                  <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
+                  <div class="fast-view-container">
+                    <p class="fast-view-text">Brzi prikaz</p>
+                    <i class="fa-solid fa-eye"></i>
+                  </div>
+                  <p class="product-title">
+                    Essential The Beginning Small Breed - hrana za štenad i
+                    juniore malih rasa pasa - 2,5kg - 1
+                  </p>
+                  <form class="add-to-cart-form" action="" method="post">
+                    <div class="add-to-cart-container">
+                      <div class="select-container">
+                        <select name="product-weight" id="3">
+                          <option value="10">10 kg</option>
+                          <option value="2.5">2.5 kg</option>
+                        </select>
+                      </div>
+                      <div class="input-group">
+                        <!-- prettier-ignore -->
+                        <div class="product-inputs">
                       <input type="button" value="-" data-field="product_qty" class="minus-button add-remove-quantity">
                       <input type="text" step="1" max="" value="1" name="product_qty" class="added-quantity">
                       <input type="button" value="+" data-field="product_qty" class="add-button add-remove-quantity">
                       <input type="hidden" name="add_cart" value="" />
                     </div>
-                      <button class="dodaj-u-korpu" type="submit" name="">
-                        <i class="fa fa-shopping-cart"></i>
-                      </button>
+                        <button class="dodaj-u-korpu" type="submit" name="">
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <div class="product-info-container">
-                  <!-- prettier-ignore -->
-                  <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
-                  <p class="product-code">Sifra <span>L-1231-Ess</span></p>
-                  <!-- prettier-ignore -->
-                  <ul class="description-list">
+                  </form>
+                  <div class="product-info-container">
+                    <!-- prettier-ignore -->
+                    <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
+                    <p class="product-code">Sifra <span>L-1231-Ess</span></p>
+                    <!-- prettier-ignore -->
+                    <ul class="description-list">
                     <li class="description-item">Predviđen je za sve odrasle pse malih i patuljastih rasa;</li>
             
                     
@@ -1237,55 +1232,55 @@
                     <li class="description-item">Ne sadrži žitarice, niti GMO sastojke i obrok prati&nbsp; BOF* princip ishrane pasa;</li>
                     <li class="description-item">Veličina i oblik granula su prilagođeni veličini vilice malih i patuljastih rasa pasa;</li>
                   </ul>
-                  <a class="more-info" href="">Detaljnije</a>
-                  <div class="icons-container">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a class="more-info" href="">Detaljnije</a>
+                    <div class="icons-container">
+                      <i class="fa-brands fa-facebook"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                      <i class="fa-brands fa-pinterest"></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-container">
-                <!-- prettier-ignore -->
-                <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
-                <div class="fast-view-container">
-                  <p class="fast-view-text">Brzi prikaz</p>
-                  <i class="fa-solid fa-eye"></i>
-                </div>
-                <p class="product-title">
-                  Essential The Beginning Small Breed - hrana za štenad i
-                  juniore malih rasa pasa - 2,5kg - 1
-                </p>
-                <form class="add-to-cart-form" action="" method="post">
-                  <div class="add-to-cart-container">
-                    <div class="select-container">
-                      <select name="product-weight" id="4">
-                        <option value="10">10 kg</option>
-                        <option value="2.5">2.5 kg</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <!-- prettier-ignore -->
-                      <div class="product-inputs">
+              <div class="swiper-slide">
+                <div class="product-container">
+                  <!-- prettier-ignore -->
+                  <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
+                  <div class="fast-view-container">
+                    <p class="fast-view-text">Brzi prikaz</p>
+                    <i class="fa-solid fa-eye"></i>
+                  </div>
+                  <p class="product-title">
+                    Essential The Beginning Small Breed - hrana za štenad i
+                    juniore malih rasa pasa - 2,5kg - 1
+                  </p>
+                  <form class="add-to-cart-form" action="" method="post">
+                    <div class="add-to-cart-container">
+                      <div class="select-container">
+                        <select name="product-weight" id="4">
+                          <option value="10">10 kg</option>
+                          <option value="2.5">2.5 kg</option>
+                        </select>
+                      </div>
+                      <div class="input-group">
+                        <!-- prettier-ignore -->
+                        <div class="product-inputs">
                       <input type="button" value="-" data-field="product_qty" class="minus-button add-remove-quantity">
                       <input type="text" step="1" max="" value="1" name="product_qty" class="added-quantity">
                       <input type="button" value="+" data-field="product_qty" class="add-button add-remove-quantity">
                       <input type="hidden" name="add_cart" value="" />
                     </div>
-                      <button class="dodaj-u-korpu" type="submit" name="">
-                        <i class="fa fa-shopping-cart"></i>
-                      </button>
+                        <button class="dodaj-u-korpu" type="submit" name="">
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <div class="product-info-container">
-                  <!-- prettier-ignore -->
-                  <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
-                  <p class="product-code">Sifra <span>L-1231-Ess</span></p>
-                  <!-- prettier-ignore -->
-                  <ul class="description-list">
+                  </form>
+                  <div class="product-info-container">
+                    <!-- prettier-ignore -->
+                    <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
+                    <p class="product-code">Sifra <span>L-1231-Ess</span></p>
+                    <!-- prettier-ignore -->
+                    <ul class="description-list">
                     <li class="description-item">Predviđen je za sve odrasle pse malih i patuljastih rasa;</li>
             
                     
@@ -1293,55 +1288,55 @@
                     <li class="description-item">Ne sadrži žitarice, niti GMO sastojke i obrok prati&nbsp; BOF* princip ishrane pasa;</li>
                     <li class="description-item">Veličina i oblik granula su prilagođeni veličini vilice malih i patuljastih rasa pasa;</li>
                   </ul>
-                  <a class="more-info" href="">Detaljnije</a>
-                  <div class="icons-container">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a class="more-info" href="">Detaljnije</a>
+                    <div class="icons-container">
+                      <i class="fa-brands fa-facebook"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                      <i class="fa-brands fa-pinterest"></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-container">
-                <!-- prettier-ignore -->
-                <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
-                <div class="fast-view-container">
-                  <p class="fast-view-text">Brzi prikaz</p>
-                  <i class="fa-solid fa-eye"></i>
-                </div>
-                <p class="product-title">
-                  Essential The Beginning Small Breed - hrana za štenad i
-                  juniore malih rasa pasa - 2,5kg - 1
-                </p>
-                <form class="add-to-cart-form" action="" method="post">
-                  <div class="add-to-cart-container">
-                    <div class="select-container">
-                      <select name="product-weight" id="5">
-                        <option value="10">10 kg</option>
-                        <option value="2.5">2.5 kg</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <!-- prettier-ignore -->
-                      <div class="product-inputs">
+              <div class="swiper-slide">
+                <div class="product-container">
+                  <!-- prettier-ignore -->
+                  <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
+                  <div class="fast-view-container">
+                    <p class="fast-view-text">Brzi prikaz</p>
+                    <i class="fa-solid fa-eye"></i>
+                  </div>
+                  <p class="product-title">
+                    Essential The Beginning Small Breed - hrana za štenad i
+                    juniore malih rasa pasa - 2,5kg - 1
+                  </p>
+                  <form class="add-to-cart-form" action="" method="post">
+                    <div class="add-to-cart-container">
+                      <div class="select-container">
+                        <select name="product-weight" id="5">
+                          <option value="10">10 kg</option>
+                          <option value="2.5">2.5 kg</option>
+                        </select>
+                      </div>
+                      <div class="input-group">
+                        <!-- prettier-ignore -->
+                        <div class="product-inputs">
                       <input type="button" value="-" data-field="product_qty" class="minus-button add-remove-quantity">
                       <input type="text" step="1" max="" value="1" name="product_qty" class="added-quantity">
                       <input type="button" value="+" data-field="product_qty" class="add-button add-remove-quantity">
                       <input type="hidden" name="add_cart" value="" />
                     </div>
-                      <button class="dodaj-u-korpu" type="submit" name="">
-                        <i class="fa fa-shopping-cart"></i>
-                      </button>
+                        <button class="dodaj-u-korpu" type="submit" name="">
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <div class="product-info-container">
-                  <!-- prettier-ignore -->
-                  <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
-                  <p class="product-code">Sifra <span>L-1231-Ess</span></p>
-                  <!-- prettier-ignore -->
-                  <ul class="description-list">
+                  </form>
+                  <div class="product-info-container">
+                    <!-- prettier-ignore -->
+                    <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
+                    <p class="product-code">Sifra <span>L-1231-Ess</span></p>
+                    <!-- prettier-ignore -->
+                    <ul class="description-list">
                     <li class="description-item">Predviđen je za sve odrasle pse malih i patuljastih rasa;</li>
             
                     
@@ -1349,55 +1344,55 @@
                     <li class="description-item">Ne sadrži žitarice, niti GMO sastojke i obrok prati&nbsp; BOF* princip ishrane pasa;</li>
                     <li class="description-item">Veličina i oblik granula su prilagođeni veličini vilice malih i patuljastih rasa pasa;</li>
                   </ul>
-                  <a class="more-info" href="">Detaljnije</a>
-                  <div class="icons-container">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a class="more-info" href="">Detaljnije</a>
+                    <div class="icons-container">
+                      <i class="fa-brands fa-facebook"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                      <i class="fa-brands fa-pinterest"></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-container">
-                <!-- prettier-ignore -->
-                <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
-                <div class="fast-view-container">
-                  <p class="fast-view-text">Brzi prikaz</p>
-                  <i class="fa-solid fa-eye"></i>
-                </div>
-                <p class="product-title">
-                  Essential The Beginning Small Breed - hrana za štenad i
-                  juniore malih rasa pasa - 2,5kg - 1
-                </p>
-                <form class="add-to-cart-form" action="" method="post">
-                  <div class="add-to-cart-container">
-                    <div class="select-container">
-                      <select name="product-weight" id="6">
-                        <option value="10">10 kg</option>
-                        <option value="2.5">2.5 kg</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <!-- prettier-ignore -->
-                      <div class="product-inputs">
+              <div class="swiper-slide">
+                <div class="product-container">
+                  <!-- prettier-ignore -->
+                  <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
+                  <div class="fast-view-container">
+                    <p class="fast-view-text">Brzi prikaz</p>
+                    <i class="fa-solid fa-eye"></i>
+                  </div>
+                  <p class="product-title">
+                    Essential The Beginning Small Breed - hrana za štenad i
+                    juniore malih rasa pasa - 2,5kg - 1
+                  </p>
+                  <form class="add-to-cart-form" action="" method="post">
+                    <div class="add-to-cart-container">
+                      <div class="select-container">
+                        <select name="product-weight" id="6">
+                          <option value="10">10 kg</option>
+                          <option value="2.5">2.5 kg</option>
+                        </select>
+                      </div>
+                      <div class="input-group">
+                        <!-- prettier-ignore -->
+                        <div class="product-inputs">
                       <input type="button" value="-" data-field="product_qty" class="minus-button add-remove-quantity">
                       <input type="text" step="1" max="" value="1" name="product_qty" class="added-quantity">
                       <input type="button" value="+" data-field="product_qty" class="add-button add-remove-quantity">
                       <input type="hidden" name="add_cart" value="" />
                     </div>
-                      <button class="dodaj-u-korpu" type="submit" name="">
-                        <i class="fa fa-shopping-cart"></i>
-                      </button>
+                        <button class="dodaj-u-korpu" type="submit" name="">
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <div class="product-info-container">
-                  <!-- prettier-ignore -->
-                  <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
-                  <p class="product-code">Sifra <span>L-1231-Ess</span></p>
-                  <!-- prettier-ignore -->
-                  <ul class="description-list">
+                  </form>
+                  <div class="product-info-container">
+                    <!-- prettier-ignore -->
+                    <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
+                    <p class="product-code">Sifra <span>L-1231-Ess</span></p>
+                    <!-- prettier-ignore -->
+                    <ul class="description-list">
                     <li class="description-item">Predviđen je za sve odrasle pse malih i patuljastih rasa;</li>
             
                     
@@ -1405,55 +1400,55 @@
                     <li class="description-item">Ne sadrži žitarice, niti GMO sastojke i obrok prati&nbsp; BOF* princip ishrane pasa;</li>
                     <li class="description-item">Veličina i oblik granula su prilagođeni veličini vilice malih i patuljastih rasa pasa;</li>
                   </ul>
-                  <a class="more-info" href="">Detaljnije</a>
-                  <div class="icons-container">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a class="more-info" href="">Detaljnije</a>
+                    <div class="icons-container">
+                      <i class="fa-brands fa-facebook"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                      <i class="fa-brands fa-pinterest"></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product-container">
-                <!-- prettier-ignore -->
-                <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
-                <div class="fast-view-container">
-                  <p class="fast-view-text">Brzi prikaz</p>
-                  <i class="fa-solid fa-eye"></i>
-                </div>
-                <p class="product-title">
-                  Essential The Beginning Small Breed - hrana za štenad i
-                  juniore malih rasa pasa - 2,5kg - 1
-                </p>
-                <form class="add-to-cart-form" action="" method="post">
-                  <div class="add-to-cart-container">
-                    <div class="select-container">
-                      <select name="product-weight" id="7">
-                        <option value="10">10 kg</option>
-                        <option value="2.5">2.5 kg</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <!-- prettier-ignore -->
-                      <div class="product-inputs">
+              <div class="swiper-slide">
+                <div class="product-container">
+                  <!-- prettier-ignore -->
+                  <img class="product-pic" src="img/home-page/test-priozvodi/ess.png" loading="lazy" alt="essential-superior-living-large-breed-hrana-za-pse-srednjih-i-velikih-rasa-10kg">
+                  <div class="fast-view-container">
+                    <p class="fast-view-text">Brzi prikaz</p>
+                    <i class="fa-solid fa-eye"></i>
+                  </div>
+                  <p class="product-title">
+                    Essential The Beginning Small Breed - hrana za štenad i
+                    juniore malih rasa pasa - 2,5kg - 1
+                  </p>
+                  <form class="add-to-cart-form" action="" method="post">
+                    <div class="add-to-cart-container">
+                      <div class="select-container">
+                        <select name="product-weight" id="7">
+                          <option value="10">10 kg</option>
+                          <option value="2.5">2.5 kg</option>
+                        </select>
+                      </div>
+                      <div class="input-group">
+                        <!-- prettier-ignore -->
+                        <div class="product-inputs">
                       <input type="button" value="-" data-field="product_qty" class="minus-button add-remove-quantity">
                       <input type="text" step="1" max="" value="1" name="product_qty" class="added-quantity">
                       <input type="button" value="+" data-field="product_qty" class="add-button add-remove-quantity">
                       <input type="hidden" name="add_cart" value="" />
                     </div>
-                      <button class="dodaj-u-korpu" type="submit" name="">
-                        <i class="fa fa-shopping-cart"></i>
-                      </button>
+                        <button class="dodaj-u-korpu" type="submit" name="">
+                          <i class="fa fa-shopping-cart"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-                <div class="product-info-container">
-                  <!-- prettier-ignore -->
-                  <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
-                  <p class="product-code">Sifra <span>L-1231-Ess</span></p>
-                  <!-- prettier-ignore -->
-                  <ul class="description-list">
+                  </form>
+                  <div class="product-info-container">
+                    <!-- prettier-ignore -->
+                    <img class="brend-img" src="https://petwebshop.com/img/m/1.jpg" alt="Brend-name" loading="lazy"/>
+                    <p class="product-code">Sifra <span>L-1231-Ess</span></p>
+                    <!-- prettier-ignore -->
+                    <ul class="description-list">
                     <li class="description-item">Predviđen je za sve odrasle pse malih i patuljastih rasa;</li>
             
                     
@@ -1461,91 +1456,91 @@
                     <li class="description-item">Ne sadrži žitarice, niti GMO sastojke i obrok prati&nbsp; BOF* princip ishrane pasa;</li>
                     <li class="description-item">Veličina i oblik granula su prilagođeni veličini vilice malih i patuljastih rasa pasa;</li>
                   </ul>
-                  <a class="more-info" href="">Detaljnije</a>
-                  <div class="icons-container">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest"></i>
+                    <a class="more-info" href="">Detaljnije</a>
+                    <div class="icons-container">
+                      <i class="fa-brands fa-facebook"></i>
+                      <i class="fa-brands fa-twitter"></i>
+                      <i class="fa-brands fa-pinterest"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- If we need navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
 
-          <!-- If we need scrollbar -->
-        </div>
-      </section>
-      <section class="section-slider">
-        <h2 class="section-title">Sve za mace!</h2>
-        <div class="slider slider-container2">
-          <div class="slide">
-            <div class="section-img-container">
-              <div class="img-container">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/posuda_64b6a3c1b09b0.webp" alt="" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/orijen.webp" alt="ORIJEN CAT ORIGINAL - HRANA ZA ODRASLE MAČKE - 340G I 1,8KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/select-gold.webp" alt="SELECT GOLD CAT ACCEPTANCE ADULT ŽIVINA SA JETROM - HRANA ZA ODRASLE MAČKE - 400G" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/josi.webp" alt="JOSERA JOSICAT TASTY BEEF - HRANA ZA ODRASLE MAČKE - 10KG I 18KG" loading="lazy" class="section-img-dog">
-              </div>
-              <div class="center-img-container">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/maca.webp" alt="" class="section-img" loading="lazy">
-              </div>
-              <div class="img-container">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/monge_64b6a45594ae3.webp" alt="MONGE CAT GRILL GRAIN FREE - TELETINA - VLAŽNA HRANA ZA STERILISANE MAČKE - 85G" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/brit_64b6a439c2421.webp" alt="BRIT PREMIUM BY NATURE CAT DELICATE FILETI U SOSU SA LOSOSOM – HRANA ZA ODRASLE STERILISANE MAČKE - 85G" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/acana_64b6a3e2dcb75.webp" alt="ACANA KITTEN FIRST FEAST - HRANA ZA MAČIĆE I JUNIORE - 340G I 1,8KG" loading="lazy" class="section-img-dog">
-                <!-- prettier-ignore -->
-                <img src="https://petwebshop.com/img/Natures.webp" alt="NATURE'S PROTECTION SUPER PREMIUM LARGE CAT KITTEN - HRANA ZA MAČIĆE I JUNIORE VELIKIH RASA - 2KG" loading="lazy" class="section-img-dog">
-              </div>
-            </div>
-            <h2 class="section-img-title">Hrana za mace!</h2>
-            <a class="section-link" href="">Pogledaj sve proizvode</a>
+            <!-- If we need scrollbar -->
           </div>
-          <div class="slide">
-            <div class="section-img-container">
-              <!-- prettier-ignore -->
-              <div class="img-container">
+        </section>
+        <section class="section-slider">
+          <h2 class="section-title">Sve za mace!</h2>
+          <div class="slider slider-container2">
+            <div class="slide">
+              <div class="section-img-container">
+                <div class="img-container">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/posuda_64b6a3c1b09b0.webp" alt="" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/orijen.webp" alt="ORIJEN CAT ORIGINAL - HRANA ZA ODRASLE MAČKE - 340G I 1,8KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/select-gold.webp" alt="SELECT GOLD CAT ACCEPTANCE ADULT ŽIVINA SA JETROM - HRANA ZA ODRASLE MAČKE - 400G" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/josi.webp" alt="JOSERA JOSICAT TASTY BEEF - HRANA ZA ODRASLE MAČKE - 10KG I 18KG" loading="lazy" class="section-img-dog">
+                </div>
+                <div class="center-img-container">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/maca.webp" alt="" class="section-img" loading="lazy">
+                </div>
+                <div class="img-container">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/monge_64b6a45594ae3.webp" alt="MONGE CAT GRILL GRAIN FREE - TELETINA - VLAŽNA HRANA ZA STERILISANE MAČKE - 85G" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/brit_64b6a439c2421.webp" alt="BRIT PREMIUM BY NATURE CAT DELICATE FILETI U SOSU SA LOSOSOM – HRANA ZA ODRASLE STERILISANE MAČKE - 85G" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/acana_64b6a3e2dcb75.webp" alt="ACANA KITTEN FIRST FEAST - HRANA ZA MAČIĆE I JUNIORE - 340G I 1,8KG" loading="lazy" class="section-img-dog">
+                  <!-- prettier-ignore -->
+                  <img src="https://petwebshop.com/img/Natures.webp" alt="NATURE'S PROTECTION SUPER PREMIUM LARGE CAT KITTEN - HRANA ZA MAČIĆE I JUNIORE VELIKIH RASA - 2KG" loading="lazy" class="section-img-dog">
+                </div>
+              </div>
+              <h2 class="section-img-title">Hrana za mace!</h2>
+              <a class="section-link" href="">Pogledaj sve proizvode</a>
+            </div>
+            <div class="slide">
+              <div class="section-img-container">
+                <!-- prettier-ignore -->
+                <div class="img-container">
                     <img src="https://petwebshop.com/img/stalak.webp" alt="FLAMINGO GREBALICA ZA MAČKE CYA1 TIRKIZNO - SIVA" loading="lazy" class="section-img-dog">
                     <img src="https://petwebshop.com/img/hrana_64b6a4f2cf515.webp" alt="TRAINER NATURAL CAT KITTEN - PILETINA - HRANA ZA MAČIĆE I JUNIORE - 300G I 1,5KG" loading="lazy" class="section-img-dog">
                     <img src="https://petwebshop.com/img/mamac.webp" alt="DUVO+ MIŠ SA PEROM - IGRAČKA ZA MAČKE - 10X6X4CM" loading="lazy" class="section-img-dog">
                 </div>
-              <!-- prettier-ignore -->
-              <div class="center-img-container">
+                <!-- prettier-ignore -->
+                <div class="center-img-container">
                     <img src="https://petwebshop.com/img/maca.webp" alt="" class="section-img" loading="lazy">
                 </div>
-              <!-- prettier-ignore -->
-              <div class="img-container">
+                <!-- prettier-ignore -->
+                <div class="img-container">
                     <img src="https://petwebshop.com/img/posuda_64b6a4c4e78ed.webp" alt="MODERNA TRENDY DINNER CAT - ČINIJA ZA MAČKE - CATS IN LOVE - 210 I 350ML" loading="lazy" class="section-img-dog">
                 
                     <img src="https://petwebshop.com/img/ogrlica_64c357f35b6ee.webp" alt="ROGZ KIDDYCAT PINK HEARTS - OGRLICA ZA MAČKE - 200-310/11MM" loading="lazy" class="section-img-dog">
                     <img src="https://petwebshop.com/img/schesir.webp" alt="SCHESIR CAT PILETINA I ŠUNKA U PRIRODNOM SOSU - VLAŽNA HRANA ZA ODRASLE MAČKE - 70G" loading="lazy" class="section-img-dog">
                     <img src="https://petwebshop.com/img/nd_64b6a3d543072.webp" alt="N&amp;D PRIME CAT KITTEN CHICKEN&amp;POMEGRANATE - HRANA ZA MAČIĆE I JUNIORE - 300G, 1,5KG, 5KG I 10KG" loading="lazy" class="section-img-dog">
                 </div>
+              </div>
+              <h2 class="section-img-title">Start paketi za mace!</h2>
+              <a class="section-link" href="">Pogledaj sve proizvode</a>
             </div>
-            <h2 class="section-img-title">Start paketi za mace!</h2>
-            <a class="section-link" href="">Pogledaj sve proizvode</a>
+            <div class="buttons">
+              <i class="fa-solid fa-angle-left slider-left"></i>
+              <i class="fa-solid fa-angle-right slider-right"></i>
+            </div>
           </div>
-          <div class="buttons">
-            <i class="fa-solid fa-angle-left slider-left"></i>
-            <i class="fa-solid fa-angle-right slider-right"></i>
-          </div>
-        </div>
-        <div class="dots"></div>
-      </section>
-      <section class="product-section-container">
-        <h2 class="product-section-title">Novo u našoj ponudi</h2>
-        <!-- prettier-ignore -->
-        <div class="swiper">
+          <div class="dots"></div>
+        </section>
+        <section class="product-section-container">
+          <h2 class="product-section-title">Novo u našoj ponudi</h2>
+          <!-- prettier-ignore -->
+          <div class="swiper">
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
@@ -1725,162 +1720,162 @@
 
           <!-- If we need scrollbar -->
         </div>
-      </section>
-      <section class="section-action-container">
-        <h2 class="section-title">Akcija akcija akcija!</h2>
-        <div class="action-main-container">
-          <div class="action-container">
-            <div class="section-img-container">
-              <div class="action-img-container action-img-container-center">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/action-img/levi.webp" loading="lazy" alt="item" class="section-img-dog action-left-img">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/action-img/pas.png" alt="pas" class="section-img-dog action-center-img" loading="lazy">
-                <!-- prettier-ignore -->
-                <img src="img/home-page/action-img/desni.webp" alt="item" loading="lazy" class="section-img-dog action-right-img">
-
-                <img
-                  src="img/home-page/action-img/pak.webp"
-                  alt="item"
-                  loading="lazy"
-                  class="section-img-dog action-right-pak"
-                />
-              </div>
-            </div>
-            <h2 class="section-img-title">Aukcijska prodaja proizvoda!</h2>
-            <a class="section-link" href="">Pogledaj sve proizvode</a>
-          </div>
-        </div>
-      </section>
-      <section class="section-blog">
-        <h2 class="section-title">Pet Web Blog</h2>
-        <div class="blog-container">
-          <h3 class="blog-text-main-text">
-            Za sve ljubitelje životinja, naše kupce, okupili smo renomirane
-            stručnjake veterine da svojim savetima pomognu, da vaši ljubimci
-            budu zdravi, da se pravilno hrane, rastu i razvijaju. I da zajedno
-            što više uživate u vremenu provedenom sa njima.
-          </h3>
-          <div class="blog-card-container">
-            <div class="blog-card">
-              <div class="card-content">
-                <div class="first-card">
-                  <div class="blog-header">
-                    <!-- prettier-ignore -->
-                    <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/buve-mala.jpg" alt="BUVE"/>
-                    <h4 class="blog-title">BUVE</h4>
-                  </div>
-                  <p class="blog-text">
-                    MORFOLOGIJA, NAČIN RAZMNOŽAVANJA I BOLESTI KOJE PRENOSE
-                  </p>
-                </div>
-                <div class="second-card">
-                  <h3>BUVE</h3>
+        </section>
+        <section class="section-action-container">
+          <h2 class="section-title">Akcija akcija akcija!</h2>
+          <div class="action-main-container">
+            <div class="action-container">
+              <div class="section-img-container">
+                <div class="action-img-container action-img-container-center">
                   <!-- prettier-ignore -->
-                  <p class="blog-text">
+                  <img src="img/home-page/action-img/levi.webp" loading="lazy" alt="item" class="section-img-dog action-left-img">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/action-img/pas.png" alt="pas" class="section-img-dog action-center-img" loading="lazy">
+                  <!-- prettier-ignore -->
+                  <img src="img/home-page/action-img/desni.webp" alt="item" loading="lazy" class="section-img-dog action-right-img">
+
+                  <img
+                    src="img/home-page/action-img/pak.webp"
+                    alt="item"
+                    loading="lazy"
+                    class="section-img-dog action-right-pak"
+                  />
+                </div>
+              </div>
+              <h2 class="section-img-title">Aukcijska prodaja proizvoda!</h2>
+              <a class="section-link" href="">Pogledaj sve proizvode</a>
+            </div>
+          </div>
+        </section>
+        <section class="section-blog">
+          <h2 class="section-title">Pet Web Blog</h2>
+          <div class="blog-container">
+            <h3 class="blog-text-main-text">
+              Za sve ljubitelje životinja, naše kupce, okupili smo renomirane
+              stručnjake veterine da svojim savetima pomognu, da vaši ljubimci
+              budu zdravi, da se pravilno hrane, rastu i razvijaju. I da zajedno
+              što više uživate u vremenu provedenom sa njima.
+            </h3>
+            <div class="blog-card-container">
+              <div class="blog-card">
+                <div class="card-content">
+                  <div class="first-card">
+                    <div class="blog-header">
+                      <!-- prettier-ignore -->
+                      <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/buve-mala.jpg" alt="BUVE"/>
+                      <h4 class="blog-title">BUVE</h4>
+                    </div>
+                    <p class="blog-text">
+                      MORFOLOGIJA, NAČIN RAZMNOŽAVANJA I BOLESTI KOJE PRENOSE
+                    </p>
+                  </div>
+                  <div class="second-card">
+                    <h3>BUVE</h3>
+                    <!-- prettier-ignore -->
+                    <p class="blog-text">
                 Buve su možda najpoznatiji ektoparaziti pasa i prosto povezani
                 sa njima koji sisaju krv, kojima se lako infestriramo a teško ih
                 se oslobađamo ...
               </p>
-                  <!-- prettier-ignore -->
-                  <a href="" class="blog-link">Procitaj sve</a>
+                    <!-- prettier-ignore -->
+                    <a href="" class="blog-link">Procitaj sve</a>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="blog-card">
-              <div class="card-content">
-                <div class="first-card">
-                  <div class="blog-header">
-                    <!-- prettier-ignore -->
-                    <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/krpelji-mala.jpg" alt="KRPELJI"/>
-                    <h4 class="blog-title">KRPELJI</h4>
+              <div class="blog-card">
+                <div class="card-content">
+                  <div class="first-card">
+                    <div class="blog-header">
+                      <!-- prettier-ignore -->
+                      <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/krpelji-mala.jpg" alt="KRPELJI"/>
+                      <h4 class="blog-title">KRPELJI</h4>
+                    </div>
+                    <p class="blog-text">
+                      MORFOLOGIJA, NAČIN RAZMNOŽAVANJA I BOLESTI KOJE PRENOSE
+                    </p>
                   </div>
-                  <p class="blog-text">
-                    MORFOLOGIJA, NAČIN RAZMNOŽAVANJA I BOLESTI KOJE PRENOSE
-                  </p>
-                </div>
-                <div class="second-card">
-                  <h3>KRPELJI</h3>
-                  <!-- prettier-ignore -->
-                  <p class="blog-text">
+                  <div class="second-card">
+                    <h3>KRPELJI</h3>
+                    <!-- prettier-ignore -->
+                    <p class="blog-text">
                 Krpelji spadaju u grupu artropoda koje su od izuzetnog
                 biomedicinskog značaja za živi svet, primarno zbog uloge
                 prenosioca različitih vrsta obolenja i neposrednog štetnog
                 delovanja nastalog hranjenjem krvi domaćina.
               </p>
-                  <!-- prettier-ignore -->
-                  <a href="" class="blog-link">Procitaj sve</a>
+                    <!-- prettier-ignore -->
+                    <a href="" class="blog-link">Procitaj sve</a>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="blog-card">
-              <div class="card-content">
-                <div class="first-card">
-                  <div class="blog-header">
-                    <!-- prettier-ignore -->
-                    <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/nega-mala.jpg" alt="NEGA PASA I MAČAKA"/>
-                    <h4 class="blog-title">NEGA PASA I MAČAKA</h4>
+              <div class="blog-card">
+                <div class="card-content">
+                  <div class="first-card">
+                    <div class="blog-header">
+                      <!-- prettier-ignore -->
+                      <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/nega-mala.jpg" alt="NEGA PASA I MAČAKA"/>
+                      <h4 class="blog-title">NEGA PASA I MAČAKA</h4>
+                    </div>
+                    <p class="blog-text">I HIGIJENA PROSTORA U KOJIMA ŽIVE</p>
                   </div>
-                  <p class="blog-text">I HIGIJENA PROSTORA U KOJIMA ŽIVE</p>
-                </div>
-                <div class="second-card">
-                  <h3>NEGA PASA I MAČAKA</h3>
-                  <!-- prettier-ignore -->
-                  <p class="blog-text">
+                  <div class="second-card">
+                    <h3>NEGA PASA I MAČAKA</h3>
+                    <!-- prettier-ignore -->
+                    <p class="blog-text">
                 Sa negom pasa i mačaka treba početi od najranijeg uzrasta. U
                 ovom tekstu ćemo se fokusirati na negu koju Vi kao vlasnik
                 možete sprovoditi sami u kućnim uslovima. Naravno, svaki pas i
                 mačka ima svoje individualne potrebe ....
               </p>
-                  <!-- prettier-ignore -->
-                  <a href="" class="blog-link" >Procitaj sve</a>
+                    <!-- prettier-ignore -->
+                    <a href="" class="blog-link" >Procitaj sve</a>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="blog-card">
-              <div class="card-content">
-                <div class="first-card">
-                  <div class="blog-header">
-                    <!-- prettier-ignore -->
-                    <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/pet-wet-mala.jpg" alt="ISHRANA ŠTENACA"/>
-                    <h4 class="blog-title">ISHRANA ŠTENACA</h4>
+              <div class="blog-card">
+                <div class="card-content">
+                  <div class="first-card">
+                    <div class="blog-header">
+                      <!-- prettier-ignore -->
+                      <img class="blog-img" loading="lazy" src="https://petwebshop.com/img/cms/BLOG/pet-wet-mala.jpg" alt="ISHRANA ŠTENACA"/>
+                      <h4 class="blog-title">ISHRANA ŠTENACA</h4>
+                    </div>
+                    <p class="blog-text">ŠTA ŠTENE TREBA DA JEDE?</p>
                   </div>
-                  <p class="blog-text">ŠTA ŠTENE TREBA DA JEDE?</p>
-                </div>
-                <div class="second-card">
-                  <h3>ISHRANA ŠTENACA</h3>
-                  <!-- prettier-ignore -->
-                  <p class="blog-text">
+                  <div class="second-card">
+                    <h3>ISHRANA ŠTENACA</h3>
+                    <!-- prettier-ignore -->
+                    <p class="blog-text">
                 Briga oko ishrane je možda i najvažnija karika, ne samo u rastu
                 psa nego i u celom njegovom kasnijem životu, jer mu nepravilna
                 ishrana može doneti mnoge probleme i oboljenja kao što i
                 pravilna ishrana može značajno doprineti da naš krzneni
                 prijatelj živi dugo i srećno.
               </p>
-                  <!-- prettier-ignore -->
-                  <a href="https://petwebshop.com/blog/Objava/1-hrana-za-stence" class="blog-link">Procitaj sve</a>
+                    <!-- prettier-ignore -->
+                    <a href="https://petwebshop.com/blog/Objava/1-hrana-za-stence" class="blog-link">Procitaj sve</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <div class="main">
-        <div class="logo-bank-container">
-          <div class="footer-contact">
-            <!-- prettier-ignore -->
-            <img src="img/home-page/logo.png"class="logo-header-img" alt="logo"loading="lazy"/>
-          </div>
-          <div class="footer-info-contraner">
-            <h2>Plaćanje</h2>
+        </section>
+      </main>
+      <footer>
+        <div class="main">
+          <div class="logo-bank-container">
+            <div class="footer-contact">
+              <!-- prettier-ignore -->
+              <img src="img/home-page/logo.png"class="logo-header-img" alt="logo"loading="lazy"/>
+            </div>
+            <div class="footer-info-contraner">
+              <h2>Plaćanje</h2>
 
-            <!-- prettier-ignore -->
-            <ul class="bank-info">
+              <!-- prettier-ignore -->
+              <ul class="bank-info">
             <li><img  class="bank-img" loading="lazy" src="https://petwebshop.com/img/cms/banka/visa.webp" width="80" height="54" alt="Visa"></li>
             <li><img  class="bank-img" loading="lazy" src="https://petwebshop.com/img/cms/banka/master.webp" width="80" height="54" alt="MasterCard"></li>
             <li><img  class="bank-img" loading="lazy" src="https://petwebshop.com/img/cms/banka/maestro.webp" width="80" height="54" alt="Maestro"></li>
@@ -1902,13 +1897,13 @@
               </a>
             </li>
           </ul>
+            </div>
           </div>
-        </div>
-        <div class="footer-container">
-          <div class="footer-info-contraner">
-            <h2>Kontaktirajte nas</h2>
-            <!-- prettier-ignore -->
-            <ul class="footer-list">
+          <div class="footer-container">
+            <div class="footer-info-contraner">
+              <h2>Kontaktirajte nas</h2>
+              <!-- prettier-ignore -->
+              <ul class="footer-list">
               <li class="footer-list-item"> <span class="footer-bold-text">Pozovi nas: </span>063/287684</li>
               <li class="footer-list-item"><span class="footer-bold-text">Ponedeljak – petak: </span>10.30 - 17h</li>
               <li class="footer-list-item footer-sofija">
@@ -1916,9 +1911,9 @@
                 <a class="footer-link" href="mailto:podrska@petwebshop.com">podrska@petwebshop.com</a>
               </li>
             </ul>
-          </div>
-          <!-- prettier-ignore -->
-          <div class="footer-info-contraner">
+            </div>
+            <!-- prettier-ignore -->
+            <div class="footer-info-contraner">
             <h2>Linkovi</h2>
             <ul class="footer-list">
             <li class="footer-list-item"><a href="" class="footer-link">O nama</a></li>
@@ -1932,10 +1927,10 @@
           </ul>
           </div>
 
-          <div class="footer-info-contraner">
-            <h2>Vise o nama</h2>
-            <!-- prettier-ignore -->
-            <ul class="footer-list">
+            <div class="footer-info-contraner">
+              <h2>Vise o nama</h2>
+              <!-- prettier-ignore -->
+              <ul class="footer-list">
               <li class="footer-list-item"><span class="footer-bold-text">NAZIV:</span> Prime Digit d.o.o, Marijane Gregoran 13, Beograd</li>
               <li class="footer-list-item"><span class="footer-bold-text">OGRANAK:</span> PetWebShop</li>
               <li class="footer-list-item"><span class="footer-bold-text">ŠIFRA:</span> 4791</li>
@@ -1946,9 +1941,10 @@
               <li class="footer-list-item"><span class="footer-bold-text">ADRESA:</span> Krajiška 27</li>
 
             </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>

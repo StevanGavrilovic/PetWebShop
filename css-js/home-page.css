@@ -841,7 +841,7 @@
   font-size: 40px;
   color: var(--primary-color);
   cursor: pointer !important;
-  z-index: 4;
+  z-index: 3;
 }
 
 .dots {
