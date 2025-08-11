@@ -39,16 +39,76 @@ document.querySelectorAll(".swiper").forEach((swiperEl) => {
 });
 
 document.querySelectorAll(".slider").forEach((slider, index) => {
-  // Pronađi sve elemente unutar trenutnog slidera
   const slides = slider.querySelectorAll(".slide");
-  const dotContainer = slider.nextElementSibling; // Pretpostavka da je dots container odmah posle slidera
+  const dotContainer = slider.nextElementSibling;
+  let leftBtn = slider.querySelector(".buttons .slider-left");
+  let rightBtn = slider.querySelector(".buttons .slider-right");
   let maxSlide = slides.length;
   let curSlide = 0;
+  let timeForTransition = 8000;
+
+  // Klon prvog slajda
+  const firstSlideClone = slides[0].cloneNode(true);
+  firstSlideClone.classList.add("clone");
+  slider.appendChild(firstSlideClone);
+
+  const allSlides = slider.querySelectorAll(".slide");
+
+  const goToSlide = function (slide, skipTransition = false) {
+    allSlides.forEach((slideEl, i) => {
+      slideEl.style.transition = skipTransition
+        ? "none"
+        : "transform 1s ease-out";
+      slideEl.style.transform = `translateX(${120 * (i - slide)}%)`;
+    });
+  };
+
+  const activateDot = function (slide) {
+    dotContainer.querySelectorAll(".dots__dot").forEach((dot) => {
+      dot.classList.remove("dots__dot--active");
+    });
+    const dotIndex = slide >= maxSlide ? 0 : slide;
+    const activeDot = dotContainer.querySelector(
+      `.dots__dot[data-slide="${dotIndex}"]`
+    );
+    if (activeDot) activeDot.classList.add("dots__dot--active");
+  };
+
+  // Navigacija
+  const prevSlide = () => {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+      timeForTransition = 8000;
+    } else {
+      curSlide--;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+    restartAutoPlay();
+  };
+
+  const nextSlideClick = () => {
+    curSlide++;
+    goToSlide(curSlide);
+    activateDot(curSlide);
+    timeForTransition = 8000;
+
+    if (curSlide === maxSlide) {
+      setTimeout(() => {
+        curSlide = 0;
+        goToSlide(curSlide, true);
+        activateDot(curSlide);
+      }, 1000);
+    }
+    restartAutoPlay();
+  };
+
+  if (leftBtn) leftBtn.addEventListener("click", prevSlide);
+  if (rightBtn) rightBtn.addEventListener("click", nextSlideClick);
 
   // Kreiranje tačkica
   const createDots = function () {
-    dotContainer.innerHTML = ""; // Očisti postojeće tačkice
-
+    dotContainer.innerHTML = "";
     slides.forEach(function (_, i) {
       dotContainer.insertAdjacentHTML(
         "beforeend",
@@ -57,39 +117,7 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
     });
   };
 
-  const firstSlideClone = slides[0].cloneNode(true);
-  firstSlideClone.classList.add("clone");
-  slider.appendChild(firstSlideClone);
-
-  // Sada imamo sve slide-ove uključujući klon
-  const allSlides = slider.querySelectorAll(".slide");
-
-  const activateDot = function (slide) {
-    dotContainer.querySelectorAll(".dots__dot").forEach((dot) => {
-      dot.classList.remove("dots__dot--active");
-    });
-
-    const dotIndex = slide >= maxSlide ? 0 : slide;
-    const activeDot = dotContainer.querySelector(
-      `.dots__dot[data-slide="${dotIndex}"]`
-    );
-    if (activeDot) {
-      activeDot.classList.add("dots__dot--active");
-    }
-  };
-
-  const goToSlide = function (slide, skipTransition = false) {
-    allSlides.forEach((slideEl, i) => {
-      if (skipTransition) {
-        slideEl.style.transition = "none";
-      } else {
-        slideEl.style.transition = "transform 1s ease-out";
-      }
-      slideEl.style.transform = `translateX(${120 * (i - slide)}%)`;
-    });
-  };
-
-  // Next slide
+  // Sledeći slajd autoplay
   const nextSlide = function () {
     curSlide++;
     goToSlide(curSlide);
@@ -99,41 +127,86 @@ document.querySelectorAll(".slider").forEach((slider, index) => {
       setTimeout(() => {
         curSlide = 0;
         goToSlide(curSlide, true);
+        activateDot(curSlide);
       }, 1000);
     }
   };
 
-  // Prev slide
-
+  // Inicijalizacija
   const init = function () {
     goToSlide(0);
     createDots();
     activateDot(0);
   };
 
-  dotContainer.addEventListener("click", function (e) {
-    if (e.target.classList.contains("dots__dot")) {
-      const { slide } = e.target.dataset;
-      curSlide = parseInt(slide);
-      goToSlide(curSlide);
-      activateDot(curSlide);
-    }
-  });
+  // Klik na tačkice
+  if (dotContainer) {
+    dotContainer.addEventListener("click", function (e) {
+      if (e.target.classList.contains("dots__dot")) {
+        const { slide } = e.target.dataset;
+        curSlide = parseInt(slide);
+        goToSlide(curSlide);
+        activateDot(curSlide);
+        restartAutoPlay();
+      }
+    });
+  }
 
-  let playSlider;
+  // AUTOPLAY sa setTimeout
+  let autoplayTimeout;
   const startAutoPlay = () => {
-    playSlider = setInterval(nextSlide, 8000);
+    clearTimeout(autoplayTimeout);
+    autoplayTimeout = setTimeout(() => {
+      nextSlide();
+      startAutoPlay();
+    }, timeForTransition);
+  };
+  const restartAutoPlay = () => startAutoPlay();
+
+  // DRAG / SWIPE podrška
+  let startX = 0;
+  let isDragging = false;
+
+  const dragStart = (x) => {
+    startX = x;
+    isDragging = true;
   };
 
-  // Inicijalizacija
-  init();
+  const dragEnd = (x) => {
+    if (!isDragging) return;
+    const diff = x - startX;
+    if (Math.abs(diff) > 50) {
+      // prag za pomeranje
+      if (diff < 0) {
+        nextSlideClick();
+      } else {
+        prevSlide();
+      }
+    }
+    isDragging = false;
+  };
 
-  // Otkomentiraj za auto play
+  // Mouse events
+  slider.addEventListener("mousedown", (e) => dragStart(e.clientX));
+  slider.addEventListener("mouseup", (e) => dragEnd(e.clientX));
+  slider.addEventListener("mouseleave", () => {
+    isDragging = false;
+  });
+
+  // Touch events
+  slider.addEventListener("touchstart", (e) => dragStart(e.touches[0].clientX));
+  slider.addEventListener("touchend", (e) =>
+    dragEnd(e.changedTouches[0].clientX)
+  );
+
+  // Start
+  init();
   startAutoPlay();
 });
 
+// Ostatak koda za slike
 let slidersImgContainer = document.querySelectorAll(".slider .slide");
-let imageTimeouts = []; // DODATO: Niz za čuvanje timeout ID-jeva
+let imageTimeouts = [];
 
 const slidersImgContainerCallback = (entries) => {
   entries.forEach((entry, index) => {
@@ -145,11 +218,10 @@ const slidersImgContainerCallback = (entries) => {
       });
     if (entry.isIntersecting) {
       sliderImgs.forEach((img, i) => {
-        // ISPRAVKA: setTimeout umesto setInterval
         const timeoutId = setTimeout(function () {
           img.classList.add("show-slide-img");
         }, 150 * i);
-        imageTimeouts.push(timeoutId); // Sačuvaj timeout ID
+        imageTimeouts.push(timeoutId);
       });
     }
   });
