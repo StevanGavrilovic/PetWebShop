@@ -509,6 +509,9 @@ body {
 
 .logo-header-img {
   width: 350px;
+  width: 350px;
+  max-width: 350px;
+  max-height: 80px;
 }
 
 .input-box {
@@ -1451,7 +1454,6 @@ footer .main {
   .header-input {
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 10px;
   }
 
   .logo-header-img {
