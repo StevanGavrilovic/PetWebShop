@@ -1882,16 +1882,15 @@ footer .main {
   .cookies-modal {
     padding: 0px;
     width: 100%;
-    max-height: 920px;
-    height: unset;
+    height: 100%;
+    bottom: unset;
   }
 
   .cookies-owerlay {
     width: 100%;
     padding: 10px;
     margin: unset;
-    height: 100%;
-    max-height: fit-content;
+    height: unset;
     border-radius: 12px;
     min-width: unset;
   }
