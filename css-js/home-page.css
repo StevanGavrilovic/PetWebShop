@@ -1235,9 +1235,9 @@
     padding: 10px;
     margin: unset;
     border-radius: 12px;
-    height: 100dvh;
+    height: 100svh;
     min-height: 200px;
-    max-height: 100vh;
+    max-height: 100svh;
     overflow-y: auto;
   }
   .modal-product-description,

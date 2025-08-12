@@ -1889,16 +1889,16 @@ footer .main {
     width: 100%;
     padding: 10px;
     margin: unset;
-    height: 100dvh;
+    height: unset;
     border-radius: 12px;
     min-width: unset;
   }
 
   .modal-content {
     padding: 10px 5px;
-    height: fit-content;
+    height: auto;
     min-height: 200px;
-    max-height: 100vh;
+    max-height: 100svh;
   }
 
   .modal-header h3 {
