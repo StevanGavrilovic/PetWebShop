@@ -1898,7 +1898,7 @@ footer .main {
     padding: 10px 5px;
     height: auto;
     min-height: 200px;
-    max-height: 100svh;
+    max-height: calc(100svh - 20px);
   }
 
   .modal-header h3 {
