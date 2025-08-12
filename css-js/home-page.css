@@ -1022,6 +1022,8 @@
     flex-direction: column;
     align-items: start;
     gap: 10px;
+    max-height: unset;
+    min-height: unset;
   }
 
   .modal-img-container {
@@ -1061,6 +1063,7 @@
   .modal-product-description {
     width: 100%;
     max-height: unset;
+    height: fit-content;
   }
 
   .close-menu-fast-view,
@@ -1224,7 +1227,7 @@
 
   .modal-container.show-modal {
     bottom: 0;
-    max-height: 845px;
+    max-height: 920px;
     height: unset;
   }
 

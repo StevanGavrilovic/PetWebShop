@@ -1673,7 +1673,8 @@ footer .main {
 
   .navigation-container {
     grid-template-columns: repeat(2, 1fr);
-    height: var(--fixed-nav-909px);
+    height: calc(100dvh - 45px);
+
     overflow: scroll;
     top: unset;
     width: 100%;
