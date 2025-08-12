@@ -1160,7 +1160,7 @@
     max-width: 229px;
   }
   .modal-description > h3 {
-    font-size: var(--h2-font-size-l);
+    font-size: var(--h2-font-size-m);
   }
 
   .description-item:last-child {
@@ -1230,14 +1230,14 @@
   }
   .modal-content {
     padding: 10px 5px;
-    height: 100dvh;
+    height: 88dvh;
   }
 
   .modal-owerlay {
     display: block;
     width: 100%;
     padding: 10px;
-    height: 100dvh;
+    height: 88dvh;
     margin: unset;
     max-height: unset;
     border-radius: 12px;
@@ -1335,7 +1335,7 @@
   }
 
   .description-item {
-    font-size: var(--p-font-size-l) !important;
+    font-size: var(--p-font-size-m) !important;
   }
 
   .modal-img-container:after {
