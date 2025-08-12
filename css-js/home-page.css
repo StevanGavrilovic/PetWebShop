@@ -1225,6 +1225,7 @@
   .modal-container.show-modal {
     bottom: 0;
     height: unset;
+    max-height: 825px;
   }
 
   .modal-owerlay {

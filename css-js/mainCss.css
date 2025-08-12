@@ -1983,6 +1983,7 @@ footer .main {
 
   .navigation-container {
     grid-template-columns: repeat(1, 1fr);
+    border-left: unset;
   }
 
   .navigation-container ul:hover {
