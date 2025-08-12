@@ -1889,7 +1889,7 @@ footer .main {
     width: 100%;
     padding: 10px;
     margin: unset;
-    height: unset;
+    height: 100dvh;
     border-radius: 12px;
     min-width: unset;
   }
@@ -1899,7 +1899,6 @@ footer .main {
     height: fit-content;
     min-height: 200px;
     max-height: 100vh;
-    overflow-y: auto;
   }
 
   .modal-header h3 {
