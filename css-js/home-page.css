@@ -1235,10 +1235,9 @@
     padding: 10px;
     margin: unset;
     border-radius: 12px;
-    height: 100%;
-    min-height: unset;
-    max-height: unset;
-    overflow-y: scroll;
+    height: auto;
+    min-height: 200px;
+    max-height: 100svh;
   }
   .modal-product-description,
   .modal-img-container,
