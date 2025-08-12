@@ -1228,20 +1228,17 @@
     height: 100%;
     bottom: unset;
   }
-  .modal-content {
-    padding: 10px 5px;
-    height: 88dvh;
-  }
 
   .modal-owerlay {
     display: block;
     width: 100%;
     padding: 10px;
-    height: 88dvh;
     margin: unset;
-    max-height: unset;
     border-radius: 12px;
-    min-width: unset;
+    height: fit-content;
+    min-height: 200px;
+    max-height: 100vh;
+    overflow-y: auto;
   }
   .modal-product-description,
   .modal-img-container,
@@ -1303,11 +1300,6 @@
     font-size: var(--add-to-cart-icon-font-size-l);
   }
 
-  .modal-owerlay {
-    min-height: unset;
-    max-height: unset;
-    padding: 10px;
-  }
   .close-menu-fast-view {
     z-index: 6;
   }

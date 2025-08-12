@@ -1888,16 +1888,17 @@ footer .main {
   .cookies-owerlay {
     width: 100%;
     padding: 10px;
-    max-height: 818px;
     margin: unset;
-
     border-radius: 12px;
     min-width: unset;
   }
 
   .modal-content {
     padding: 10px 5px;
-    height: 88dvh;
+    height: fit-content;
+    min-height: 200px;
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
   .modal-header h3 {
