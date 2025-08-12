@@ -378,11 +378,17 @@ productContainers.forEach((productContainer, i) => {
     // Dodaj event listenere za dugmad u modalu
     addQuantityListeners(modal);
 
+    const height = window.innerHeight;
+    console.log(modal);
+    modal.style.maxHeight = `${height}px`;
+    console.log("test");
+
     let closeModal = document.querySelector(".close-menu-fast-view");
 
     // Zatvaranje klikom na X dugme
     closeModal.addEventListener("click", function (e) {
       modal.classList.remove("show-modal");
+
       bodyElement.style.overflow = "auto";
       setTimeout(() => {
         if (modal.parentNode) {
@@ -395,6 +401,7 @@ productContainers.forEach((productContainer, i) => {
     modal.addEventListener("click", function (e) {
       if (e.target === modal) {
         modal.classList.remove("show-modal");
+
         bodyElement.style.overflow = "auto";
         setTimeout(() => {
           if (modal.parentNode) {

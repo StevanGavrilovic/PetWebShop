@@ -1096,12 +1096,25 @@
   /* Modal */
   .modal-container.show-modal {
     bottom: 0;
-    max-height: 920px;
     height: unset;
   }
 
   .modal-owerlay {
     height: 100%;
+    width: 100%;
+  }
+
+  .close-menu-fast-view,
+  .close-cookies-modal {
+    padding: 10px;
+  }
+
+  .modal-img-container .product-pic {
+    width: 100%;
+    max-width: 229px;
+  }
+  .modal-description > h3 {
+    font-size: var(--h2-font-size-m);
   }
   /* Modal ends */
 
@@ -1160,23 +1173,6 @@
   /* Avatar ends */
 
   /* Swiper */
-
-  .modal-owerlay {
-    width: 100%;
-  }
-
-  .close-menu-fast-view,
-  .close-cookies-modal {
-    padding: 10px;
-  }
-
-  .modal-img-container .product-pic {
-    width: 100%;
-    max-width: 229px;
-  }
-  .modal-description > h3 {
-    font-size: var(--h2-font-size-m);
-  }
 
   .description-item:last-child {
     padding-bottom: var(--padding-10);
