@@ -1235,10 +1235,10 @@
     padding: 10px;
     margin: unset;
     border-radius: 12px;
-    height: unset;
+    height: 100%;
     min-height: unset;
-    max-height: calc(100svh - 6px);
-    overflow-y: auto;
+    max-height: unset;
+    overflow-y: scroll;
   }
   .modal-product-description,
   .modal-img-container,
