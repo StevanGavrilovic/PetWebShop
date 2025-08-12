@@ -1889,6 +1889,7 @@ footer .main {
     width: 100%;
     padding: 10px;
     margin: unset;
+    height: unset;
     border-radius: 12px;
     min-width: unset;
   }
