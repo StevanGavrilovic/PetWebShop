@@ -1224,8 +1224,8 @@
 
   .modal-container.show-modal {
     bottom: 0;
-    height: unset;
-    max-height: 825px;
+    min-height: 100dvh;
+    height: auto;
   }
 
   .modal-owerlay {
@@ -1234,10 +1234,10 @@
     padding: 10px;
     margin: unset;
     border-radius: 12px;
-    height: 97svh;
-    min-height: unset;
-    max-height: unset;
-    overflow: scroll;
+    /* height: 97svh; */
+    min-height: 0;
+    /* max-height: 90dvh; */
+    overflow-y: auto;
   }
   .modal-product-description,
   .modal-img-container,
@@ -1248,6 +1248,11 @@
 
   .modal-description > h3 {
     margin-top: 10px;
+  }
+  @supports (-webkit-touch-callout: none) {
+    .modal-container.show-modal {
+      min-height: -webkit-fill-available;
+    }
   }
   /* Modal ends */
 
