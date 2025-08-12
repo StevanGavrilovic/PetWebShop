@@ -1235,7 +1235,7 @@
     padding: 10px;
     margin: unset;
     border-radius: 12px;
-    height: max-content;
+    height: 100dvh;
     min-height: 200px;
     max-height: 100vh;
     overflow-y: auto;
