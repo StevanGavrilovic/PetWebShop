@@ -1238,6 +1238,7 @@
     height: 100dvh;
     min-height: unset;
     max-height: unset;
+    overflow: scroll;
   }
   .modal-product-description,
   .modal-img-container,
