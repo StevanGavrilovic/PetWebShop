@@ -211,12 +211,11 @@ export function mainFunction() {
     if (!selectedCount || !availableCount) return;
 
     const uniqueCheckboxes = getUniqueCheckboxes();
-    const selected = uniqueCheckboxes.filter(
-      (checkbox) => checkbox.checked
-    ).length;
+    const selected =
+      uniqueCheckboxes.filter((checkbox) => checkbox.checked).length / 2;
 
     selectedCount.textContent = selected;
-    availableCount.textContent = uniqueCheckboxes.length;
+    availableCount.textContent = uniqueCheckboxes.length / 2;
   }
 
   // Funkcija za čuvanje preferenci u localStorage
