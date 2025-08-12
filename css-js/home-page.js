@@ -230,7 +230,7 @@ const slidersImgContainerCallback = (entries) => {
 const optionsSlider = {
   root: null,
   rootMargin: "0px",
-  threshold: 0.9,
+  threshold: 0.7,
 };
 
 const observerSlider = new IntersectionObserver(
