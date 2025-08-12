@@ -1093,6 +1093,18 @@
 }
 
 @media screen and (max-width: 909px) {
+  /* Modal */
+  .modal-container.show-modal {
+    bottom: 0;
+    max-height: 920px;
+    height: unset;
+  }
+
+  .modal-owerlay {
+    height: 100%;
+  }
+  /* Modal ends */
+
   /* section slider */
 
   .section-img-container {
@@ -1223,12 +1235,6 @@
   /* Modal */
   .modal-cart select {
     width: 100%;
-  }
-
-  .modal-container.show-modal {
-    bottom: 0;
-    max-height: 920px;
-    height: unset;
   }
 
   .modal-owerlay {
