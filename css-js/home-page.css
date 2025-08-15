@@ -1285,7 +1285,7 @@
     grid-template-rows: repeat(4, 120px);
     gap: 0px;
     height: 480px;
-    width: 90%;
+    width: 100%;
     justify-items: center;
     padding: 0px;
     margin: 10px auto;
@@ -1306,7 +1306,7 @@
     transition: all 0.3s ease;
     position: relative;
     height: fit-content;
-    max-width: 124px;
+    max-width: 130px;
   }
 
   /* Grid positioning - 7 avatara u specifičnom rasporedu */
